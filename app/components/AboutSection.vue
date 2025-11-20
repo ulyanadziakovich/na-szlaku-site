@@ -15,7 +15,7 @@
 
       <p class="about-text">
         Nasza restauracja to miejsce, gdzie pasja do gotowania spotyka się z szacunkiem dla lokalnych smaków.
-        Od lat tworzymy dania, które łączą autentyczne receptury z nowoczesnym podejściem do kuchni.
+        W naszym podejściu cechuje nas wierność tradycji, rodzinna atmosfera oraz dbałość o jakość dań, przysłowiowo mówiąc "gotujemy jak dla siebie"
       </p>
 
       <h3 class="section-heading">Filozofia</h3>
