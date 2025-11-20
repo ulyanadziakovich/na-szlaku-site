@@ -61,7 +61,6 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const currentIndex = ref(0)
 
-// Dokładnie te 7 zdjęć z folderu public
 const images = [
   { src: '/05.jpg', alt: 'Danie 1' },
   { src: '/06.jpg', alt: 'Danie 2' },
@@ -69,7 +68,7 @@ const images = [
   { src: '/06.jpg', alt: 'Danie 4' },
   { src: '/05.jpg', alt: 'Danie 5' },
   { src: '/06.jpg', alt: 'Danie 6' },
- 
+  // dodaj kolejne jeśli chcesz
 ]
 
 let autoPlay = null
@@ -117,6 +116,7 @@ onUnmounted(() => {
   font-weight: 700;
 }
 
+/* POPRAWIONY BLOK – teraz wszystko jest idealnie wyśrodkowane */
 .menu-info {
   background-color: white;
   padding: 3rem 2.5rem;
@@ -124,13 +124,18 @@ onUnmounted(() => {
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   max-width: 700px;
   margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;           /* ← idealnie wyśrodkuje wszystko */
+  gap: 2rem;
 }
 
 .menu-text {
   font-size: 1.6rem;
   line-height: 1.6;
   color: #444;
-  margin: 0 0 2rem 0;
+  margin: 0;
   font-weight: 500;
 }
 
@@ -148,7 +153,7 @@ onUnmounted(() => {
   font-size: 1.25rem;
   transition: all 0.3s;
   box-shadow: 0 6px 20px rgba(24,119,242,0.3);
-  text-align: center;
+  min-width: 280px;              /* ← stała szerokość na desktopie */
 }
 
 .facebook-btn:hover {
@@ -162,7 +167,7 @@ onUnmounted(() => {
   fill: currentColor;
 }
 
-/* KARUZELA – najważniejsze linie */
+/* KARUZELA – bez zmian */
 .carousel {
   position: relative;
   max-width: 100%;
@@ -172,29 +177,11 @@ onUnmounted(() => {
   box-shadow: 0 15px 40px rgba(0,0,0,0.15);
 }
 
-.carousel-track-container {
-  overflow: hidden;
-}
+.carousel-track-container { overflow: hidden; }
+.carousel-track { display: flex; transition: transform 0.6s ease-in-out; }
+.carousel-slide { min-width: 100%; flex-shrink: 0; }
+.carousel-slide img { width: 100%; height: 65vh; object-fit: cover; display: block; }
 
-.carousel-track {
-  display: flex;
-  transition: transform 0.6s ease-in-out;
-}
-
-.carousel-slide {
-  min-width: 100%;
-  width: 100%;
-  flex-shrink: 0;   /* KLUCZOWA LINIJKA – bez tego był kolaż! */
-}
-
-.carousel-slide img {
-  width: 100%;
-  height: 65vh;
-  object-fit: cover;
-  display: block;
-}
-
-/* Strzałki */
 .nav-btn {
   position: absolute;
   top: 50%;
@@ -208,22 +195,15 @@ onUnmounted(() => {
   font-size: 2rem;
   cursor: pointer;
   z-index: 10;
-  transition: background 0.3s;
 }
-
-.nav-btn:hover {
-  background: rgba(0,0,0,0.8);
-}
-
+.nav-btn:hover { background: rgba(0,0,0,0.8); }
 .prev { left: 20px; }
 .next { right: 20px; }
 
-/* Kropki */
 .carousel-dots {
   text-align: center;
   padding: 1.5rem 0;
 }
-
 .dot {
   display: inline-block;
   width: 12px;
@@ -232,119 +212,38 @@ onUnmounted(() => {
   background-color: #bbb;
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
+.dot.active { background-color: #c9a96e; }
 
-.dot.active {
-  background-color: #c9a96e;
-}
-
-/* Responsywność */
-@media (max-width: 968px) {
-  .menu-section {
-    padding: 4rem 1.5rem;
-  }
-
-  .menu-header {
-    margin-bottom: 3.5rem;
-  }
-
-  .menu-title {
-    font-size: 2.8rem;
-  }
-
-  .menu-text {
-    font-size: 1.4rem;
-  }
-}
-
+/* RESPONSIVE – teraz przycisk jest idealny na telefonie */
 @media (max-width: 768px) {
-  .menu-section {
-    padding: 3rem 1rem;
-  }
-
-  .menu-title {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .menu-info {
-    padding: 2rem 1.5rem;
-  }
-
-  .menu-text {
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
-  }
+  .menu-section { padding: 4rem 1.5rem; }
+  .menu-title { font-size: 2.8rem; }
+  .menu-text { font-size: 1.4rem; }
 
   .facebook-btn {
     padding: 1rem 2rem;
     font-size: 1.15rem;
-    width: 100%;
-    justify-content: center;
+    min-width: 260px;           /* ← ładna stała szerokość */
+    width: auto;                /* ← nie rozciąga się */
   }
 
-  .fb-icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  .carousel-slide img {
-    height: 50vh;
-  }
-
-  .nav-btn {
-    width: 44px;
-    height: 44px;
-    font-size: 1.6rem;
-  }
-
+  .fb-icon { width: 24px; height: 24px; }
+  .carousel-slide img { height: 50vh; }
+  .nav-btn { width: 44px; height: 44px; font-size: 1.6rem; }
   .prev { left: 10px; }
   .next { right: 10px; }
-
-  .carousel-dots {
-    padding: 1rem 0;
-  }
-
-  .dot {
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
-  }
 }
 
 @media (max-width: 480px) {
-  .menu-section {
-    padding: 2.5rem 1rem;
-  }
-
-  .menu-title {
-    font-size: 2.2rem;
-  }
-
-  .menu-text {
-    font-size: 1.2rem;
-    line-height: 1.5;
-  }
-
+  .menu-title { font-size: 2.3rem; }
+  .menu-text { font-size: 1.3rem; }
   .facebook-btn {
-    padding: 0.9rem 1.5rem;
+    padding: 0.9rem 1.8rem;
     font-size: 1.1rem;
-    left: 50%;
+    min-width: 240px;
   }
-
-  .carousel-slide img {
-    height: 40vh;
-  }
-
-  .nav-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1.4rem;
-  }
-
-  .carousel-dots {
-    padding: 0.75rem 0;
-  }
+  .carousel-slide img { height: 40vh; }
+  .nav-btn { width: 40px; height: 40px; font-size: 1.4rem; }
 }
 </style>

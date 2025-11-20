@@ -1,6 +1,8 @@
 <template>
   <div class="galeria-page">
     <div class="container">
+      <NuxtLink to="/" class="back-btn">← Powrót na stronę główną</NuxtLink>
+
       <h1 class="galeria-title">Galeria</h1>
       <p class="subtitle">Zdjęcia lokalu, dań i zadowolonych gości</p>
 
@@ -75,6 +77,26 @@ const prevSlide = () => {
 .container {
   max-width: 1400px;
   margin: 0 auto;
+}
+
+.back-btn {
+  display: inline-block;
+  font-size: 1.2rem;
+  color: #1a4d2e;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  background: white;
+  border: 2px solid #1a4d2e;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s;
+  margin-bottom: 2rem;
+}
+
+.back-btn:hover {
+  background: #1a4d2e;
+  color: white;
+  transform: translateX(-5px);
 }
 
 .galeria-title {

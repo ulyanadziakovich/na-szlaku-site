@@ -7,7 +7,10 @@
         <!-- Lewa strona - informacje -->
         <div class="contact-info">
           <div class="info-group">
-            <div class="info-label">Zadzwoń do nas</div>
+            <div class="info-label-wrapper">
+              <div class="info-label">Zadzwoń do nas</div>
+              <img src="/logo.png" alt="Logo" class="mobile-logo-small" />
+            </div>
             <a href="tel:537660808" class="info-value phone">537 660 808</a>
           </div>
 
@@ -150,13 +153,23 @@
   border-radius: 50%;
 }
 
+.info-label-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
 .info-label {
   font-size: 0.9rem;
   color: #8b7355;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  margin-bottom: 0.75rem;
   font-weight: 600;
+}
+
+.mobile-logo-small {
+  display: none; /* ukryte na desktop */
 }
 
 .info-value {
@@ -293,6 +306,14 @@
 
   .info-value {
     font-size: 1.3rem;
+  }
+
+  /* Małe logo widoczne TYLKO na mobilce */
+  .mobile-logo-small {
+    display: block;
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
   }
 
   .info-value.address {

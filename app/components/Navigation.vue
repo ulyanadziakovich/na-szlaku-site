@@ -15,12 +15,13 @@
 
       <!-- Mobile overlay menu -->
       <div class="mobile-menu-overlay" :class="{ open: mobileMenuOpen }">
-        <!-- Logo in mobile menu -->
-        <NuxtLink to="/" class="mobile-logo" @click="closeMobileMenu">
-          <img src="/logo.png" alt="Logo restauracji" class="logo-img" />
-        </NuxtLink>
+        <div class="mobile-menu-content">
+          <!-- Logo in mobile menu -->
+          <NuxtLink to="/" class="mobile-logo" @click="closeMobileMenu">
+            <img src="/logo.png" alt="Logo restauracji" class="logo-img" />
+          </NuxtLink>
 
-        <ul class="mobile-menu-list">
+          <ul class="mobile-menu-list">
           <!-- Catering -->
           <li>
             <NuxtLink to="/catering" @click="closeMobileMenu">Catering</NuxtLink>
@@ -30,17 +31,7 @@
           <li class="dropdown">
             <button @click="toggleHours" class="dropdown-toggle">
               Godziny otwarcia
-              <span class="arrow" :class="{ open: hoursOpen }">▼</span>
             </button>
-            <div v-if="hoursOpen" class="dropdown-content">
-              <div class="hours-item"><span class="day">Poniedziałek</span><span class="time">9:00 - 17:00</span></div>
-              <div class="hours-item"><span class="day">Wtorek</span><span class="time">9:00 - 17:00</span></div>
-              <div class="hours-item"><span class="day">Środa</span><span class="time">9:00 - 17:00</span></div>
-              <div class="hours-item"><span class="day">Czwartek</span><span class="time">9:00 - 17:00</span></div>
-              <div class="hours-item"><span class="day">Piątek</span><span class="time">9:00 - 20:00</span></div>
-              <div class="hours-item"><span class="day">Sobota</span><span class="time">10:00 - 20:00</span></div>
-              <div class="hours-item"><span class="day">Niedziela</span><span class="time">10:00 - 18:00</span></div>
-            </div>
           </li>
 
           <!-- O nas -->
@@ -52,33 +43,14 @@
           <li class="dropdown">
             <button @click="toggleContact" class="dropdown-toggle">
               Kontakt
-              <span class="arrow" :class="{ open: contactOpen }">▼</span>
             </button>
-            <div v-if="contactOpen" class="dropdown-content contact-dropdown">
-              <div class="contact-item">
-                <strong>Telefon:</strong>
-                <a href="tel:537660808">537 660 808</a>
-              </div>
-              <div class="contact-item">
-                <strong>E-mail:</strong>
-                <a href="mailto:wlodarczyk65@wp.pl">wlodarczyk65@wp.pl</a>
-              </div>
-            </div>
           </li>
 
           <!-- Vouchery (dropdown) -->
           <li class="dropdown">
             <button @click="toggleVoucher" class="dropdown-toggle">
               Vouchery
-              <span class="arrow" :class="{ open: voucherOpen }">▼</span>
             </button>
-            <div v-if="voucherOpen" class="dropdown-content voucher-dropdown">
-              <div class="voucher-info">
-                <p>"Voucher na obiady — więcej smaku, mniej wydatków!"</p>
-                <p>Vouchery do naszej restauracji na 10 obiadów.</p>
-                <p><strong>Kontakt:</strong> <a href="tel:537660808">537 660 808</a></p>
-              </div>
-            </div>
           </li>
 
           <!-- Galeria -->
@@ -86,6 +58,58 @@
             <NuxtLink to="/galeria" @click="closeMobileMenu">Galeria</NuxtLink>
           </li>
         </ul>
+        </div>
+      </div>
+
+      <!-- Modale dla mobile -->
+      <!-- Modal Godziny otwarcia -->
+      <div v-if="hoursOpen" class="modal-overlay" @click="closeHours">
+        <div class="modal-content" @click.stop>
+          <button class="modal-close" @click="closeHours">×</button>
+          <h3 class="modal-title">Godziny otwarcia</h3>
+          <div class="modal-body">
+            <div class="hours-item"><span class="day">Poniedziałek</span><span class="time">9:00 - 17:00</span></div>
+            <div class="hours-item"><span class="day">Wtorek</span><span class="time">9:00 - 17:00</span></div>
+            <div class="hours-item"><span class="day">Środa</span><span class="time">9:00 - 17:00</span></div>
+            <div class="hours-item"><span class="day">Czwartek</span><span class="time">9:00 - 17:00</span></div>
+            <div class="hours-item"><span class="day">Piątek</span><span class="time">9:00 - 20:00</span></div>
+            <div class="hours-item"><span class="day">Sobota</span><span class="time">10:00 - 20:00</span></div>
+            <div class="hours-item"><span class="day">Niedziela</span><span class="time">10:00 - 18:00</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Kontakt -->
+      <div v-if="contactOpen" class="modal-overlay" @click="closeContact">
+        <div class="modal-content" @click.stop>
+          <button class="modal-close" @click="closeContact">×</button>
+          <h3 class="modal-title">Kontakt</h3>
+          <div class="modal-body">
+            <div class="contact-item">
+              <strong>Telefon:</strong>
+              <a href="tel:537660808">537 660 808</a>
+            </div>
+            <div class="contact-item">
+              <strong>E-mail:</strong>
+              <a href="mailto:wlodarczyk65@wp.pl">wlodarczyk65@wp.pl</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Vouchery -->
+      <div v-if="voucherOpen" class="modal-overlay" @click="closeVoucher">
+        <div class="modal-content" @click.stop>
+          <button class="modal-close" @click="closeVoucher">×</button>
+          <h3 class="modal-title">Vouchery</h3>
+          <div class="modal-body">
+            <div class="voucher-info">
+              <p>"Voucher na obiady — więcej smaku, mniej wydatków!"</p>
+              <p>Vouchery do naszej restauracji na 10 obiadów.</p>
+              <p><strong>Kontakt:</strong> <a href="tel:537660808">537 660 808</a></p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Desktop menu (hidden on mobile) -->
@@ -177,9 +201,9 @@ const toggleVoucher = () => {
   hoursOpen.value = false
   contactOpen.value = false
 }
-const closeHours = () => setTimeout(() => hoursOpen.value = false, 200)
-const closeContact = () => setTimeout(() => contactOpen.value = false, 200)
-const closeVoucher = () => setTimeout(() => voucherOpen.value = false, 200)
+const closeHours = () => hoursOpen.value = false
+const closeContact = () => contactOpen.value = false
+const closeVoucher = () => voucherOpen.value = false
 
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
@@ -316,23 +340,27 @@ const handleOnasClick = (e) => {
   transition: transform 0.3s ease-in-out;
   overflow-y: auto;
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .mobile-menu-overlay.open {
   transform: translateX(0);
 }
 
+.mobile-menu-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  max-width: 800px;
+  margin: 2rem auto 0;
+}
+
 .mobile-logo {
+  flex-shrink: 0;
   display: block;
-  margin: 2rem auto 3rem;
-  text-align: center;
 }
 
 .mobile-logo .logo-img {
-  height: 120px;
+  height: 100px;
   width: auto;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
 }
@@ -341,8 +369,7 @@ const handleOnasClick = (e) => {
   list-style: none;
   padding: 0;
   margin: 0;
-  width: 100%;
-  max-width: 400px;
+  flex: 1;
 }
 
 .mobile-menu-list li {
@@ -366,6 +393,9 @@ const handleOnasClick = (e) => {
   font-family: inherit;
   width: 100%;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .mobile-menu-list a:hover,
@@ -578,41 +608,139 @@ const handleOnasClick = (e) => {
 
 @media (max-width: 768px) {
   .navigation {
-    height: 60px;
+    background: transparent;
+    box-shadow: none;
+    height: auto;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: auto;
   }
 
   .nav-container {
-    padding: 0 20px;
+    padding: 0;
+    max-width: none;
   }
 
   .nav-container::before {
     display: none;
   }
 
-  /* Show hamburger on mobile */
   .hamburger-btn {
     display: flex;
   }
 
-  /* Hide desktop logo and menu on mobile */
   .desktop-logo,
   .desktop-menu {
     display: none;
   }
 
-  /* Mobile dropdown styles */
+  /* Pełny ekran – bez paddingu, bez logo */
+  .mobile-menu-overlay {
+    padding: 2rem 0;
+    background: white;
+    display: block;
+    overflow-y: auto;
+  }
+
+  .mobile-menu-content {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    padding: 2rem 0;
+    margin: 0;
+  }
+
+  /* Ukrywamy logo w menu mobilnym */
+  .mobile-logo {
+    display: none !important;
+  }
+
+  /* Lista – zajmuje cały ekran */
+  .mobile-menu-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .mobile-menu-list li {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    min-height: 80px;
+  }
+
+  /* Ogromne napisy na całą szerokość */
+  .mobile-menu-list a,
+  .mobile-menu-list .dropdown-toggle {
+    width: 100%;
+    padding: 2rem 1.5rem;
+    font-size: 2.8rem;           /* bardzo duże */
+    font-weight: 600;
+    color: #1a4d2e;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: background 0.3s ease;
+  }
+
+  .mobile-menu-list a:hover,
+  .mobile-menu-list .dropdown-toggle:hover {
+    background: rgba(26, 77, 46, 0.08);
+  }
+
+  /* Strzałka – mała, po prawej */
+  .arrow {
+    font-size: 1.6rem;
+    margin-left: 1rem;
+    transition: transform 0.3s ease;
+  }
+  .arrow.open {
+    transform: rotate(180deg);
+  }
+
+  /* Dropdowny – też na całą szerokość */
+  .mobile-menu-list .dropdown {
+    width: 100%;
+  }
+
   .mobile-menu-list .dropdown-content {
     position: static;
-    transform: none;
+    width: 80%;
+    background: rgba(26, 77, 46, 0.05);
+    padding: 1.5rem 2rem;
+    margin: 0;
+    border-radius: 0;
     box-shadow: none;
-    margin-top: 0.5rem;
+    animation: none;
   }
 
   .mobile-menu-list .hours-item,
   .mobile-menu-list .contact-item {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(26, 77, 46, 0.1);
-    font-size: 1rem;
+    padding: 1rem 0;
+    font-size: 1.3rem;
+    border-bottom: 1px solid rgba(26, 77, 46, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    
   }
 
   .mobile-menu-list .hours-item:last-child,
@@ -620,20 +748,249 @@ const handleOnasClick = (e) => {
     border-bottom: none;
   }
 
+  .mobile-menu-list .contact-item strong,
+  .mobile-menu-list .contact-item a {
+    color: #1a4d2e !important;
+    font-size: 1.3rem !important;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .mobile-menu-list .hours-item .day,
+  .mobile-menu-list .hours-item .time {
+    color: #1a4d2e !important;
+    font-size: 1.3rem !important;
+    font-weight: 600;
+  }
+
   .mobile-menu-list .voucher-info p {
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 0.8rem 0;
+    line-height: 1.6;
+    color: #1a4d2e;
+  }
+}
+
+/* Na bardzo małych ekranach – trochę mniejszy tekst, ale nadal pełna szerokość */
+@media (max-width: 480px) {
+  .mobile-menu-list a,
+  .mobile-menu-list .dropdown-toggle {
+    font-size: 2.2rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .arrow {
+    font-size: 1.4rem;
+  }
+
+  .mobile-menu-list .hours-item,
+  .mobile-menu-list .contact-item {
+    font-size: 1.1rem;
+  }
+
+  .mobile-menu-list .contact-item strong,
+  .mobile-menu-list .contact-item a,
+  .mobile-menu-list .hours-item .day,
+  .mobile-menu-list .hours-item .time {
+    font-size: 1.1rem !important;
+    color: #1a4d2e !important;
+    font-weight: 600;
+  }
+
+  .mobile-menu-list .voucher-info p {
+    font-size: 1.1rem;
+  }
+
+  .mobile-menu-list .dropdown-content {
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* Modale - UKRYTE NA DESKTOP, widoczne tylko na mobile */
+.modal-overlay {
+  display: none; /* domyślnie ukryte na desktop */
+}
+
+/* Modały widoczne TYLKO na mobile */
+@media (max-width: 768px) {
+  .modal-overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  /* KLUCZOWA POPRAWKA */
+  .modal-content {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    width: 90vw;           /* zamiast width: 100% */
+    max-width: 400px;      /* sztywne ograniczenie */
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    box-sizing: border-box;
+  }
+
+  /* Tytuł nie może wychodzić poza ekran */
+  .modal-title {
+    font-size: 1.8rem;
+    color: #1a4d2e;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    padding-right: 3rem;
+    word-wrap: break-word;
+  }
+
+  .modal-body {
+    color: #333;
+  }
+
+  /* Godziny – tekst nie może się rozjeżdżać */
+  .modal-body .hours-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1.15rem;
+    flex-wrap: wrap;           /* <--- to najważniejsze! */
+    gap: 0.5rem;
+  }
+
+  .modal-body .hours-item:last-child {
+    border-bottom: none;
+  }
+
+  .modal-body .hours-item .day {
+    font-weight: 600;
+    color: #1a4d2e;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .modal-body .hours-item .time {
+    color: #444;
+    font-weight: 500;
+    text-align: right;
+  }
+
+  /* Kontakt i vouchery – też bezpieczne */
+  .modal-body .contact-item,
+  .modal-body .voucher-info p {
+    text-align: center;
+    padding: 0.8rem 0;
+    word-wrap: break-word;
+  }
+
+  .modal-body .contact-item {
+    border-bottom: 1px solid #eee;
+  }
+
+  .modal-body .contact-item:last-child {
+    border-bottom: none;
+  }
+
+  .modal-body .contact-item strong {
+    display: block;
+    color: #1a4d2e;
     font-size: 1rem;
-    margin: 0.75rem 0;
+    margin-bottom: 0.4rem;
   }
 
-  .mobile-menu-list .arrow {
-    font-size: 0.9rem;
-    margin-left: 0.5rem;
-    display: inline-block;
-    transition: transform 0.3s;
+  .modal-body .contact-item a {
+    color: #1a4d2e;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
   }
 
-  .mobile-menu-list .arrow.open {
-    transform: rotate(180deg);
+  .modal-body .contact-item a:hover {
+    text-decoration: underline;
+  }
+
+  .modal-body .voucher-info p {
+    margin: 0.8rem 0;
+    line-height: 1.5;
+    color: #444;
+    font-size: 0.95rem;
+  }
+
+  .modal-body .voucher-info p:first-child {
+    font-weight: 600;
+    color: #1a4d2e;
+    font-size: 1.1rem;
+  }
+
+  .modal-body .voucher-info a {
+    color: #1a4d2e;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .modal-body .voucher-info a:hover {
+    text-decoration: underline;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    background: rgba(26,77,46,0.1);
+    border: none;
+    font-size: 2.2rem;
+    color: #1a4d2e;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .modal-close:hover {
+    background: rgba(26, 77, 46, 0.2);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Na małych ekranach jeszcze mniejszy modal */
+@media (max-width: 480px) {
+  .modal-content {
+    width: 92vw;
+    max-width: 340px;
+    padding: 1.8rem 1.2rem;
+  }
+
+  .modal-title {
+    font-size: 1.6rem;
+  }
+
+  .modal-body .hours-item {
+    font-size: 1.05rem;
   }
 }
 </style>
