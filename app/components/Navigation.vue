@@ -894,7 +894,7 @@ const handleOnasClick = (e) => {
   }
 
   .modal-body .contact-item {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ffffff;
   }
 
   .modal-body .contact-item:last-child {
