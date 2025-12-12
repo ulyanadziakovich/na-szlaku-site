@@ -29,12 +29,12 @@
   position: relative;                  /* potrzebne do nakładki */
 }
 
-/* Ciemna nakładka – żeby tekst był dobrze czytelny na jasnym zdjęciu */
+/* Ciemna nakładka */
 .hero-section::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.45);     /* półprzezroczysty czarny – dostosuj do potrzeb */
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 
@@ -64,23 +64,25 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #c9a96e;
-  color: white;
+  background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%);
+  color: #2a2420;
   padding: 0.9rem 2.5rem;
   border-radius: 50px;
+  border: 2px solid #d4af37;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
   min-width: 200px;
   text-align: center;
 }
 
 .hero-btn:hover {
-  background-color: #d4b580;
+  background: linear-gradient(135deg, #f5e6d3 0%, #d4af37 100%);
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
+  border-color: #f5e6d3;
 }
 
 /* Responsywność */

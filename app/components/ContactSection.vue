@@ -34,9 +34,9 @@
 
         </div>
 
-        <!-- Prawa strona - animowane rośliny -->
+        <!-- Prawa strona - góry SVG -->
         <div class="contact-empty-space">
-          <AnimatedPlants />
+          <MountainsSVG />
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@
 
 <style scoped>
 .contact-section {
-  background: linear-gradient(135deg, #f9f7f4 0%, #ede8e0 100%);
+  background: linear-gradient(135deg, #3d3832 0%, #4a4139 100%);
   padding: 5rem 2rem;
   position: relative;
   overflow: hidden;
@@ -66,16 +66,16 @@
   background: linear-gradient(
     to right,
     transparent 0%,
-    #1a4d2e 10%,
-    #1a4d2e 30%,
+    #d4af37 10%,
+    #d4af37 30%,
     transparent 30%,
     transparent 35%,
-    #1a4d2e 35%,
-    #1a4d2e 65%,
+    #d4af37 35%,
+    #d4af37 65%,
     transparent 65%,
     transparent 70%,
-    #1a4d2e 70%,
-    #1a4d2e 90%,
+    #d4af37 70%,
+    #d4af37 90%,
     transparent 100%
   );
   opacity: 0.3;
@@ -91,12 +91,13 @@
 
 .contact-title {
   font-size: 3rem;
-  color: #1a4d2e;
+  color: #d4af37;
   text-align: center;
   margin-bottom: 4rem;
   font-family: 'Georgia', serif;
   font-weight: 600;
   position: relative;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .contact-title::after {
@@ -107,7 +108,7 @@
   transform: translateX(-50%);
   width: 100px;
   height: 3px;
-  background: linear-gradient(90deg, transparent, #1a4d2e, transparent);
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
 }
 
 .contact-content {
@@ -149,8 +150,9 @@
   top: 0.5rem;
   width: 8px;
   height: 8px;
-  background: #1a4d2e;
+  background: #d4af37;
   border-radius: 50%;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
 }
 
 .info-label-wrapper {
@@ -162,7 +164,7 @@
 
 .info-label {
   font-size: 0.9rem;
-  color: #8b7355;
+  color: #d4af37;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-weight: 600;
@@ -174,7 +176,7 @@
 
 .info-value {
   font-size: 1.4rem;
-  color: #1a4d2e;
+  color: #f5e6d3;
   font-weight: 500;
   line-height: 1.6;
   display: block;
@@ -190,13 +192,13 @@
 
 .info-value.phone:hover,
 .info-value.email:hover {
-  color: #2d7a4f;
+  color: #d4af37;
   transform: translateX(5px);
 }
 
 .info-value.address {
   font-size: 1.2rem;
-  color: #4a4a4a;
+  color: #e8d5c0;
 }
 
 .decorative-line {
@@ -204,8 +206,8 @@
   background: linear-gradient(
     to right,
     transparent,
-    rgba(26, 77, 46, 0.2) 20%,
-    rgba(26, 77, 46, 0.2) 80%,
+    rgba(212, 175, 55, 0.3) 20%,
+    rgba(212, 175, 55, 0.3) 80%,
     transparent
   );
   margin: 0 2rem;
@@ -231,12 +233,12 @@
 }
 
 .hours-item .day {
-  color: #4a4a4a;
+  color: #e8d5c0;
   font-weight: 500;
 }
 
 .hours-item .time {
-  color: #1a4d2e;
+  color: #d4af37;
   font-weight: 600;
   font-family: 'Georgia', serif;
 }

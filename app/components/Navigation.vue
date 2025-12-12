@@ -68,13 +68,11 @@
           <button class="modal-close" @click="closeHours">×</button>
           <h3 class="modal-title">Godziny otwarcia</h3>
           <div class="modal-body">
-            <div class="hours-item"><span class="day">Poniedziałek</span><span class="time">9:00 - 17:00</span></div>
-            <div class="hours-item"><span class="day">Wtorek</span><span class="time">9:00 - 17:00</span></div>
-            <div class="hours-item"><span class="day">Środa</span><span class="time">9:00 - 17:00</span></div>
-            <div class="hours-item"><span class="day">Czwartek</span><span class="time">9:00 - 17:00</span></div>
-            <div class="hours-item"><span class="day">Piątek</span><span class="time">9:00 - 20:00</span></div>
-            <div class="hours-item"><span class="day">Sobota</span><span class="time">10:00 - 20:00</span></div>
-            <div class="hours-item"><span class="day">Niedziela</span><span class="time">10:00 - 18:00</span></div>
+            <div v-for="item in openingHours" :key="item.day" class="hours-item">
+              <span class="day">{{ item.day }}</span>
+              <span class="time" :class="{ closed: item.closed }">{{ item.time }}</span>
+            </div>
+            <div class="hours-note">* W porze zimowej godziny pracy mogą być skrócone</div>
           </div>
         </div>
       </div>
@@ -123,13 +121,11 @@
             <span class="arrow" :class="{ open: hoursOpen }">▼</span>
           </button>
           <div v-if="hoursOpen" class="dropdown-content">
-            <div class="hours-item"><span class="day">Poniedziałek</span><span class="time">9:00 - 17:00</span></div>
-            <div class="hours-item"><span class="day">Wtorek</span><span class="time">9:00 - 17:00</span></div>
-            <div class="hours-item"><span class="day">Środa</span><span class="time">9:00 - 17:00</span></div>
-            <div class="hours-item"><span class="day">Czwartek</span><span class="time">9:00 - 17:00</span></div>
-            <div class="hours-item"><span class="day">Piątek</span><span class="time">9:00 - 20:00</span></div>
-            <div class="hours-item"><span class="day">Sobota</span><span class="time">10:00 - 20:00</span></div>
-            <div class="hours-item"><span class="day">Niedziela</span><span class="time">10:00 - 18:00</span></div>
+            <div v-for="item in openingHours" :key="item.day" class="hours-item">
+              <span class="day">{{ item.day }}</span>
+              <span class="time" :class="{ closed: item.closed }">{{ item.time }}</span>
+            </div>
+            <div class="hours-note">* W porze zimowej godziny pracy mogą być skrócone</div>
           </div>
         </li>
         <li>
@@ -171,7 +167,7 @@
 
       <!-- Desktop logo (hidden on mobile) -->
       <NuxtLink to="/" class="desktop-logo">
-        <img src="/logo.png" alt="Logo restauracji" class="logo-img" />
+        <img src="/logoszlak.png" alt="Logo restauracji" class="logo-img" />
       </NuxtLink>
     </div>
   </nav>
@@ -185,6 +181,17 @@ const hoursOpen = ref(false)
 const contactOpen = ref(false)
 const voucherOpen = ref(false)
 const mobileMenuOpen = ref(false)
+
+// Godziny otwarcia - jedna definicja dla całej aplikacji
+const openingHours = [
+  { day: 'Poniedziałek', time: 'Zamknięte', closed: true },
+  { day: 'Wtorek', time: '11:00 - 17:00', closed: false },
+  { day: 'Środa', time: '11:00 - 17:00', closed: false },
+  { day: 'Czwartek', time: '11:00 - 17:00', closed: false },
+  { day: 'Piątek', time: '11:00 - 17:00', closed: false },
+  { day: 'Sobota', time: '11:00 - 17:00', closed: false },
+  { day: 'Niedziela', time: '11:00 - 17:00', closed: false }
+]
 
 const toggleHours = () => {
   hoursOpen.value = !hoursOpen.value
@@ -247,12 +254,13 @@ const handleOnasClick = (e) => {
 
 <style scoped>
 .navigation {
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: linear-gradient(180deg, #3d3832 0%, #4a4139 100%);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   position: sticky;
   top: 0;
   z-index: 1000;
   height: 50px;
+  border-bottom: 2px solid #8b7f74;
 }
 
 .nav-container {
@@ -276,16 +284,16 @@ const handleOnasClick = (e) => {
   height: 3px;
   background: linear-gradient(
     to right,
-    #1a4d2e 0%,
-    #1a4d2e 15%,
+    #d4af37 0%,
+    #d4af37 15%,
     transparent 15%,
     transparent 20%,
-    #1a4d2e 20%,
-    #1a4d2e 80%,
+    #d4af37 20%,
+    #d4af37 80%,
     transparent 80%,
     transparent 85%,
-    #1a4d2e 85%,
-    #1a4d2e 100%
+    #d4af37 85%,
+    #d4af37 100%
   );
   z-index: 0;
   pointer-events: none;
@@ -309,7 +317,7 @@ const handleOnasClick = (e) => {
 .hamburger-btn span {
   width: 100%;
   height: 3px;
-  background: #1a4d2e;
+  background: #d4af37;
   border-radius: 2px;
   transition: all 0.3s;
   transform-origin: center;
@@ -334,7 +342,7 @@ const handleOnasClick = (e) => {
   left: 0;
   width: 100%;
   height: 100vh;
-  background: white;
+  background: linear-gradient(135deg, #3d3832 0%, #4a4139 50%, #3d3832 100%);
   z-index: 1500;
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
@@ -357,6 +365,12 @@ const handleOnasClick = (e) => {
 .mobile-logo {
   flex-shrink: 0;
   display: block;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.mobile-logo:hover {
+  transform: scale(1.05);
 }
 
 .mobile-logo .logo-img {
@@ -382,7 +396,7 @@ const handleOnasClick = (e) => {
   display: flex;
   padding: 1rem;
   text-decoration: none;
-  color: #1a4d2e;
+  color: #f5e6d3;
   font-size: 1.4rem;
   font-weight: 600;
   transition: background 0.3s, color 0.3s;
@@ -400,14 +414,16 @@ const handleOnasClick = (e) => {
 
 .mobile-menu-list a:hover,
 .mobile-menu-list .dropdown-toggle:hover {
-  background: rgba(26, 77, 46, 0.1);
+  background: rgba(212, 175, 55, 0.2);
+  color: #d4af37;
 }
 
 .mobile-menu-list .dropdown-content {
   margin-top: 1rem;
-  background: #f9f7f4;
+  background: rgba(139, 111, 71, 0.2);
   border-radius: 8px;
   padding: 1rem;
+  border: 1px solid #8b6f47;
 }
 
 /* Desktop logo and menu */
@@ -415,11 +431,16 @@ const handleOnasClick = (e) => {
   display: flex;
   position: absolute;
   z-index: 1001;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
 
+.desktop-logo:hover {
+  transform: scale(1.05);
 }
 
 .desktop-logo .logo-img {
-  height: 120px;
+  height: 160px;
   width: auto;
   display: block;
   transition: opacity 0.3s;
@@ -445,7 +466,7 @@ const handleOnasClick = (e) => {
   height: 100%;
   position: relative;
   z-index: 1;
-  background: white;
+  background: linear-gradient(180deg, #3d3832 0%, #4a4139 100%);
   padding: 0 10px;
 }
 
@@ -463,7 +484,7 @@ const handleOnasClick = (e) => {
   height: 100%;
   padding: 0;
   text-decoration: none;
-  color: #333;
+  color: #f5e6d3;
   font-size: 1.3rem;
   font-weight: 500;
   transition: color 0.3s;
@@ -475,7 +496,7 @@ const handleOnasClick = (e) => {
 
 .desktop-menu a:hover,
 .desktop-menu .dropdown-toggle:hover {
-  color: #666;
+  color: #d4af37;
 }
 
 .dropdown {
@@ -502,10 +523,11 @@ const handleOnasClick = (e) => {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: white;
+  background: linear-gradient(135deg, #4a4139 0%, #564d43 100%);
   min-width: 250px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   border-radius: 8px;
+  border: 2px solid #8b7f74;
   padding: 1rem;
   margin-top: 0.5rem;
   animation: slideDown 0.3s ease;
@@ -519,18 +541,23 @@ const handleOnasClick = (e) => {
 
 .contact-item {
   padding: 0.75rem 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(139, 127, 116, 0.3);
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  color: #f5e6d3;
 }
 
 .contact-item:last-child {
   border-bottom: none;
 }
 
+.contact-item strong {
+  color: #d4af37;
+}
+
 .contact-item a {
-  color: #081c06;
+  color: #f5e6d3;
   text-decoration: none;
 }
 
@@ -549,17 +576,17 @@ const handleOnasClick = (e) => {
 
 .voucher-info p {
   margin: 0.75rem 0;
-  color: #333;
+  color: #f5e6d3;
   line-height: 1.5;
 }
 
 .voucher-info p:first-child {
   font-weight: 600;
-  color: #1a4d2e;
+  color: #d4af37;
 }
 
 .voucher-info a {
-  color: #1a4d2e;
+  color: #d4af37;
   text-decoration: none;
   font-weight: 600;
 }
@@ -572,7 +599,7 @@ const handleOnasClick = (e) => {
   display: flex;
   justify-content: space-between;
   padding: 0.75rem 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(139, 127, 116, 0.3);
 }
 
 .hours-item:last-child {
@@ -581,11 +608,26 @@ const handleOnasClick = (e) => {
 
 .day {
   font-weight: 500;
-  color: #333;
+  color: #f5e6d3;
 }
 
 .time {
-  color: #666;
+  color: #d4af37;
+}
+
+.time.closed {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+.hours-note {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  font-size: 0.85rem;
+  color: #e8d5c0;
+  font-style: italic;
+  text-align: center;
+  border-top: 1px solid rgba(139, 111, 71, 0.3);
 }
 
 @keyframes slideDown {
@@ -638,7 +680,7 @@ const handleOnasClick = (e) => {
   /* Pełny ekran – bez paddingu, bez logo */
   .mobile-menu-overlay {
     padding: 2rem 0;
-    background: white;
+    background: linear-gradient(135deg, #3d3832 0%, #4a4139 50%, #3d3832 100%);
     display: block;
     overflow-y: auto;
   }
@@ -689,7 +731,7 @@ const handleOnasClick = (e) => {
     padding: 2rem 1.5rem;
     font-size: 2.8rem;           /* bardzo duże */
     font-weight: 600;
-    color: #1a4d2e;
+    color: #f5e6d3;
     background: transparent;
     border: none;
     border-radius: 0;
@@ -702,7 +744,8 @@ const handleOnasClick = (e) => {
 
   .mobile-menu-list a:hover,
   .mobile-menu-list .dropdown-toggle:hover {
-    background: rgba(26, 77, 46, 0.08);
+    background: rgba(212, 175, 55, 0.15);
+    color: #d4af37;
   }
 
   /* Strzałka – mała, po prawej */
@@ -723,24 +766,25 @@ const handleOnasClick = (e) => {
   .mobile-menu-list .dropdown-content {
     position: static;
     width: 80%;
-    background: rgba(26, 77, 46, 0.05);
+    background: rgba(139, 127, 116, 0.2);
     padding: 1.5rem 2rem;
     margin: 0;
     border-radius: 0;
     box-shadow: none;
     animation: none;
+    border: 1px solid #8b7f74;
   }
 
   .mobile-menu-list .hours-item,
   .mobile-menu-list .contact-item {
     padding: 1rem 0;
     font-size: 1.3rem;
-    border-bottom: 1px solid rgba(26, 77, 46, 0.15);
+    border-bottom: 1px solid rgba(139, 127, 116, 0.3);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     text-align: center;
-    
+
   }
 
   .mobile-menu-list .hours-item:last-child,
@@ -750,7 +794,7 @@ const handleOnasClick = (e) => {
 
   .mobile-menu-list .contact-item strong,
   .mobile-menu-list .contact-item a {
-    color: #1a4d2e !important;
+    color: #f5e6d3 !important;
     font-size: 1.3rem !important;
     font-weight: 600;
     text-decoration: none;
@@ -758,7 +802,7 @@ const handleOnasClick = (e) => {
 
   .mobile-menu-list .hours-item .day,
   .mobile-menu-list .hours-item .time {
-    color: #1a4d2e !important;
+    color: #f5e6d3 !important;
     font-size: 1.3rem !important;
     font-weight: 600;
   }
@@ -768,7 +812,7 @@ const handleOnasClick = (e) => {
     text-align: center;
     margin: 0.8rem 0;
     line-height: 1.6;
-    color: #1a4d2e;
+    color: #f5e6d3;
   }
 }
 
@@ -794,7 +838,7 @@ const handleOnasClick = (e) => {
   .mobile-menu-list .hours-item .day,
   .mobile-menu-list .hours-item .time {
     font-size: 1.1rem !important;
-    color: #1a4d2e !important;
+    color: #f5e6d3 !important;
     font-weight: 600;
   }
 
@@ -830,22 +874,23 @@ const handleOnasClick = (e) => {
 
   /* KLUCZOWA POPRAWKA */
   .modal-content {
-    background: white;
+    background: linear-gradient(135deg, #4a4139 0%, #564d43 100%);
     border-radius: 20px;
+    border: 2px solid #8b7f74;
     padding: 2rem 1.5rem;
-    width: 90vw;           /* zamiast width: 100% */
-    max-width: 400px;      /* sztywne ograniczenie */
+    width: 75vw;           /* mniejsze od poprzednich 90vw */
+    max-width: 340px;      /* mniejsze maksimum */
     max-height: 85vh;
     overflow-y: auto;
     position: relative;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
     box-sizing: border-box;
   }
 
   /* Tytuł nie może wychodzić poza ekran */
   .modal-title {
     font-size: 1.8rem;
-    color: #1a4d2e;
+    color: #d4af37;
     margin-bottom: 1.5rem;
     font-weight: 700;
     text-align: center;
@@ -854,7 +899,7 @@ const handleOnasClick = (e) => {
   }
 
   .modal-body {
-    color: #333;
+    color: #f5e6d3;
   }
 
   /* Godziny – tekst nie może się rozjeżdżać */
@@ -862,7 +907,7 @@ const handleOnasClick = (e) => {
     display: flex;
     justify-content: space-between;
     padding: 1rem 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(139, 127, 116, 0.3);
     font-size: 1.15rem;
     flex-wrap: wrap;           /* <--- to najważniejsze! */
     gap: 0.5rem;
@@ -874,15 +919,30 @@ const handleOnasClick = (e) => {
 
   .modal-body .hours-item .day {
     font-weight: 600;
-    color: #1a4d2e;
+    color: #f5e6d3;
     flex: 1;
     min-width: 120px;
   }
 
   .modal-body .hours-item .time {
-    color: #444;
+    color: #d4af37;
     font-weight: 500;
     text-align: right;
+  }
+
+  .modal-body .hours-item .time.closed {
+    color: #ff6b6b;
+    font-weight: 600;
+  }
+
+  .modal-body .hours-note {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    font-size: 0.9rem;
+    color: #e8d5c0;
+    font-style: italic;
+    text-align: center;
+    border-top: 1px solid rgba(139, 111, 71, 0.3);
   }
 
   /* Kontakt i vouchery – też bezpieczne */
@@ -894,7 +954,7 @@ const handleOnasClick = (e) => {
   }
 
   .modal-body .contact-item {
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid rgba(139, 127, 116, 0.3);
   }
 
   .modal-body .contact-item:last-child {
@@ -903,13 +963,13 @@ const handleOnasClick = (e) => {
 
   .modal-body .contact-item strong {
     display: block;
-    color: #1a4d2e;
+    color: #d4af37;
     font-size: 1rem;
     margin-bottom: 0.4rem;
   }
 
   .modal-body .contact-item a {
-    color: #1a4d2e;
+    color: #f5e6d3;
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: 600;
@@ -922,18 +982,18 @@ const handleOnasClick = (e) => {
   .modal-body .voucher-info p {
     margin: 0.8rem 0;
     line-height: 1.5;
-    color: #444;
+    color: #f5e6d3;
     font-size: 0.95rem;
   }
 
   .modal-body .voucher-info p:first-child {
     font-weight: 600;
-    color: #1a4d2e;
+    color: #d4af37;
     font-size: 1.1rem;
   }
 
   .modal-body .voucher-info a {
-    color: #1a4d2e;
+    color: #d4af37;
     font-weight: 600;
     text-decoration: none;
   }
@@ -946,10 +1006,10 @@ const handleOnasClick = (e) => {
     position: absolute;
     top: 0.8rem;
     right: 0.8rem;
-    background: rgba(26,77,46,0.1);
+    background: rgba(212, 175, 55, 0.2);
     border: none;
     font-size: 2.2rem;
-    color: #1a4d2e;
+    color: #d4af37;
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -957,7 +1017,7 @@ const handleOnasClick = (e) => {
   }
 
   .modal-close:hover {
-    background: rgba(26, 77, 46, 0.2);
+    background: rgba(212, 175, 55, 0.3);
   }
 }
 
@@ -980,8 +1040,8 @@ const handleOnasClick = (e) => {
 /* Na małych ekranach jeszcze mniejszy modal */
 @media (max-width: 480px) {
   .modal-content {
-    width: 92vw;
-    max-width: 340px;
+    width: 80vw;
+    max-width: 300px;
     padding: 1.8rem 1.2rem;
   }
 

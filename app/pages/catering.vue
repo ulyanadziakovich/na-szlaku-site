@@ -47,69 +47,91 @@
 .catering-page {
   padding: 6rem 2rem;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f9f7f4 0%, #ede8e0 50%, #f9f7f4 100%);
+  background: linear-gradient(135deg, #3d3832 0%, #4a4139 50%, #3d3832 100%);
+  position: relative;
 }
 
-.container { max-width: 1000px; margin: 0 auto; }
+.catering-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(139, 127, 116, 0.05) 3px,
+      rgba(139, 127, 116, 0.05) 6px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
 
 .back-btn {
   display: inline-block;
   font-size: 1.2rem;
-  color: #1a4d2e;
+  color: #2a2420;
   text-decoration: none;
   padding: 0.8rem 1.5rem;
-  background: white;
-  border: 2px solid #1a4d2e;
+  background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%);
+  border: 2px solid #d4af37;
   border-radius: 50px;
-  font-weight: 600;
+  font-weight: 700;
   transition: all 0.3s;
   margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
 .back-btn:hover {
-  background: #1a4d2e;
-  color: white;
+  background: linear-gradient(135deg, #f5e6d3 0%, #d4af37 100%);
   transform: translateX(-5px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
 }
 
 .catering-title {
-  font-size: 3.5rem; color: #1a4d2e; text-align: center; margin-bottom: 2rem;
-  font-family: 'Georgia', serif; font-weight: 700;
+  font-size: 3.5rem; color: #d4af37; text-align: center; margin-bottom: 2rem;
+  font-family: 'Georgia', serif; font-weight: 700; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .intro-text {
-  font-size: 1.6rem; color: #555; text-align: center; margin-bottom: 4rem;
+  font-size: 1.6rem; color: #e8d5c0; text-align: center; margin-bottom: 4rem;
   line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto;
 }
 
 .catering-image {
   width: 100%; max-width: 900px; margin: 0 auto 5rem auto;
-  border-radius: 16px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  border-radius: 16px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+  border: 3px solid #8b7f74;
 }
 .catering-image img { width: 100%; height: auto; display: block; object-fit: cover; }
 
 .catering-content { max-width: 800px; margin: 0 auto; text-align: left; }
 
 .section-title {
-  font-size: 2.2rem; color: #1a4d2e; margin: 3rem 0 1.5rem;
+  font-size: 2.2rem; color: #d4af37; margin: 3rem 0 1.5rem;
   font-family: 'Georgia', serif; font-weight: 600;
 }
 .section-title:first-child { margin-top: 0; }
 
-.section-text { font-size: 1.4rem; color: #444; line-height: 1.8; margin-bottom: 2rem; }
-.contact-info { margin: 3rem 0 2.5rem; font-weight: 500; color: #333; }
+.section-text { font-size: 1.4rem; color: #f5e6d3; line-height: 1.8; margin-bottom: 2rem; }
+.contact-info { margin: 3rem 0 2.5rem; font-weight: 500; color: #e8d5c0; }
 
 /* Przycisk – desktop bez zmian */
 .contact-phone {
   display: inline-block;
-  font-size: 2.2rem; color: #1a4d2e; font-weight: 700; text-decoration: none;
-  padding: 1.2rem 3rem; background: linear-gradient(135deg, rgba(26,77,46,0.1) 0%, rgba(45,122,79,0.15) 100%);
-  border: 2px solid #1a4d2e; border-radius: 50px; transition: all 0.3s;
-  font-family: 'Georgia', serif; box-shadow: 0 8px 20px rgba(26,77,46,0.15);
+  font-size: 2.2rem; color: #2a2420; font-weight: 700; text-decoration: none;
+  padding: 1.2rem 3rem; background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%);
+  border: 2px solid #d4af37; border-radius: 50px; transition: all 0.3s;
+  font-family: 'Georgia', serif; box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
 }
 .contact-phone:hover {
-  background: linear-gradient(135deg, #1a4d2e 0%, #2d7a4f 100%);
-  color: white; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(26,77,46,0.25);
+  background: linear-gradient(135deg, #f5e6d3 0%, #d4af37 100%);
+  transform: translateY(-3px); box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
 }
 
 /* TYLKO MOBILE – mniejszy i wyśrodkowany przycisk */

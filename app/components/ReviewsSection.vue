@@ -88,8 +88,27 @@ const goToSlide = (index) => { currentIndex.value = index }
 
 <style scoped>
 .reviews-section {
-  background-color: white;
+  background: linear-gradient(135deg, #4a4139 0%, #564d43 50%, #4a4139 100%);
   padding: 4rem 2rem;
+  position: relative;
+}
+
+.reviews-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(139, 127, 116, 0.03) 10px,
+      rgba(139, 127, 116, 0.03) 20px
+    );
+  pointer-events: none;
 }
 
 .reviews-container {
@@ -98,13 +117,16 @@ const goToSlide = (index) => { currentIndex.value = index }
   display: flex;
   flex-direction: column;
   align-items: center;           /* ← najważniejsze dla wyśrodkowania przycisku */
+  position: relative;
+  z-index: 1;
 }
 
 .reviews-title {
   text-align: center;
   font-size: 2.5rem;
-  color: #333;
+  color: #d4af37;
   margin-bottom: 2rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .rating-summary {
@@ -112,9 +134,9 @@ const goToSlide = (index) => { currentIndex.value = index }
   margin-bottom: 3rem;
 }
 
-.rating-score { font-size: 3rem; font-weight: bold; color: #333; }
-.rating-stars { font-size: 1.5rem; color: #fbbf24; }
-.rating-count { font-size: 1rem; color: #666; }
+.rating-score { font-size: 3rem; font-weight: bold; color: #d4af37; }
+.rating-stars { font-size: 1.5rem; color: #d4af37; }
+.rating-count { font-size: 1rem; color: #e8d5c0; }
 
 .carousel {
   position: relative;
@@ -131,26 +153,27 @@ const goToSlide = (index) => { currentIndex.value = index }
 
 .review-card {
   min-width: 100%;
-  background: #f9fafb;
+  background: linear-gradient(135deg, #3d3832 0%, #4a4139 100%);
   border-radius: 12px;
+  border: 2px solid #8b7f74;
   padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
   box-sizing: border-box;
 }
 
 /* reszta stylów bez zmian – zostawiam dla czytelności */
 .review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
 .review-author { display: flex; gap: 1rem; align-items: center; }
-.author-avatar { width: 48px; height: 48px; border-radius: 50%; background: rgb(86,81,68); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; flex-shrink: 0; }
-.author-name { font-size: 1.1rem; font-weight: 600; color: #333; margin: 0; }
-.author-meta { font-size: 0.85rem; color: #666; margin: 0.25rem 0 0; }
-.review-stars { color: #fbbf24; font-size: 1.2rem; }
-.review-time { font-size: 0.85rem; color: #999; margin-bottom: 1rem; }
-.review-text { font-size: 1rem; line-height: 1.6; color: #444; }
+.author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%); color: #2a2420; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; flex-shrink: 0; border: 2px solid #8b7f74; }
+.author-name { font-size: 1.1rem; font-weight: 600; color: #f5e6d3; margin: 0; }
+.author-meta { font-size: 0.85rem; color: #e8d5c0; margin: 0.25rem 0 0; }
+.review-stars { color: #d4af37; font-size: 1.2rem; }
+.review-time { font-size: 0.85rem; color: #e8d5c0; margin-bottom: 1rem; }
+.review-text { font-size: 1rem; line-height: 1.6; color: #f5e6d3; }
 
 .carousel-btn {
-  background: white;
-  border: 2px solid #e5e7eb;
+  background: linear-gradient(135deg, #4a4139 0%, #564d43 100%);
+  border: 2px solid #8b7f74;
   border-radius: 50%;
   width: 48px;
   height: 48px;
@@ -158,11 +181,11 @@ const goToSlide = (index) => { currentIndex.value = index }
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  color: #333;
+  color: #d4af37;
   cursor: pointer;
   transition: all 0.3s;
 }
-.carousel-btn:hover:not(:disabled) { background: rgb(86,81,68); color: white; border-color: rgb(86,81,68); }
+.carousel-btn:hover:not(:disabled) { background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%); color: #2a2420; border-color: #d4af37; }
 .carousel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
 .carousel-dots {
@@ -175,13 +198,13 @@ const goToSlide = (index) => { currentIndex.value = index }
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #d1d5db;
+  background: rgba(139, 127, 116, 0.4);
   border: none;
   cursor: pointer;
   transition: all 0.3s;
 }
-.dot:hover { background: #9ca3af; }
-.dot.active { background: rgb(86,81,68); width: 32px; border-radius: 6px; }
+.dot:hover { background: rgba(212, 175, 55, 0.6); }
+.dot.active { background: #d4af37; width: 32px; border-radius: 6px; }
 
 /* POPRAWIONY PRZYCISK – teraz wygląda idealnie na każdym telefonie */
 .more-reviews-btn {
@@ -189,23 +212,25 @@ const goToSlide = (index) => { currentIndex.value = index }
   align-items: center;
   justify-content: center;
   padding: 1rem 2.5rem;
-  background: rgb(86,81,68);
-  color: white;
+  background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%);
+  color: #2a2420;
   text-decoration: none;
   border-radius: 8px;
+  border: 2px solid #d4af37;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   transition: all 0.3s;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
   min-width: 280px;           /* ← stała szerokość */
   width: fit-content;
   margin: 0 auto;             /* ← idealnie wyśrodkowany */
 }
 
 .more-reviews-btn:hover {
-  background: rgb(70,65,55);
+  background: linear-gradient(135deg, #f5e6d3 0%, #d4af37 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
+  border-color: #f5e6d3;
 }
 
 /* RESPONSIVE – przycisk pozostaje ładny */

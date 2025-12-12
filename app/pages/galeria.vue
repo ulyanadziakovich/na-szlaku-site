@@ -71,45 +71,69 @@ const prevSlide = () => {
 .galeria-page {
   padding: 6rem 2rem;
   min-height: 100vh;
-  background-color: #faf9f7;
+  background: linear-gradient(135deg, #3d3832 0%, #4a4139 50%, #3d3832 100%);
+  position: relative;
+}
+
+.galeria-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(139, 127, 116, 0.03) 10px,
+      rgba(139, 127, 116, 0.03) 20px
+    );
+  pointer-events: none;
+  z-index: 0;
 }
 
 .container {
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .back-btn {
   display: inline-block;
   font-size: 1.2rem;
-  color: #1a4d2e;
+  color: #2a2420;
   text-decoration: none;
   padding: 0.8rem 1.5rem;
-  background: white;
-  border: 2px solid #1a4d2e;
+  background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%);
+  border: 2px solid #d4af37;
   border-radius: 50px;
-  font-weight: 600;
+  font-weight: 700;
   transition: all 0.3s;
   margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
 }
 
 .back-btn:hover {
-  background: #1a4d2e;
-  color: white;
+  background: linear-gradient(135deg, #f5e6d3 0%, #d4af37 100%);
   transform: translateX(-5px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
 }
 
 .galeria-title {
   font-size: 3.5rem;
-  color: #333;
+  color: #d4af37;
   margin-bottom: 1rem;
   font-weight: 700;
   text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .subtitle {
   font-size: 1.6rem;
-  color: #555;
+  color: #e8d5c0;
   margin-bottom: 4rem;
   text-align: center;
 }
@@ -121,7 +145,8 @@ const prevSlide = () => {
   margin: 0 auto;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+  border: 3px solid #8b7f74;
 }
 
 .carousel-track-container {
@@ -151,20 +176,22 @@ const prevSlide = () => {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: white;
-  border: none;
+  background: linear-gradient(135deg, #4a4139 0%, #564d43 100%);
+  color: #d4af37;
+  border: 2px solid #8b7f74;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   font-size: 2rem;
   cursor: pointer;
   z-index: 10;
-  transition: background 0.3s;
+  transition: all 0.3s;
 }
 
 .nav-btn:hover {
-  background: rgba(0,0,0,0.8);
+  background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%);
+  color: #2a2420;
+  border-color: #d4af37;
 }
 
 .prev { left: 20px; }
@@ -174,6 +201,7 @@ const prevSlide = () => {
 .carousel-dots {
   text-align: center;
   padding: 1.5rem 0;
+  background: linear-gradient(135deg, #3d3832 0%, #4a4139 100%);
 }
 
 .dot {
@@ -181,14 +209,14 @@ const prevSlide = () => {
   width: 12px;
   height: 12px;
   margin: 0 6px;
-  background-color: #bbb;
+  background-color: rgba(139, 127, 116, 0.4);
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .dot.active {
-  background-color: #c9a96e;
+  background-color: #d4af37;
 }
 
 /* Responsywność */

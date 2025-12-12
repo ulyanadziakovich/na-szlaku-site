@@ -43,11 +43,37 @@
 
 <style scoped>
 .about-section {
-  background: linear-gradient(135deg, #f9f7f4 0%, #ede8e0 50%, #f9f7f4 100%);
+  background: linear-gradient(135deg, #3d3832 0%, #4a4139 50%, #3d3832 100%);
   min-height: 100vh;
   padding: 6rem 2rem;
   position: relative;
   overflow: hidden;
+}
+
+.about-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(139, 127, 116, 0.05) 3px,
+      rgba(139, 127, 116, 0.05) 6px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 80px,
+      rgba(139, 127, 116, 0.03) 80px,
+      rgba(139, 127, 116, 0.03) 160px
+    );
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Animowane listki w tle */
@@ -65,9 +91,9 @@
   position: absolute;
   width: 30px;
   height: 30px;
-  background: #1a4d2e;
+  background: #d4af37;
   clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-  opacity: 0.15;
+  opacity: 0.2;
   animation: float 15s infinite ease-in-out;
 }
 
@@ -134,16 +160,17 @@
 
 .about-title {
   font-size: 3.5rem;
-  color: #1a4d2e;
+  color: #d4af37;
   text-align: center;
   margin-bottom: 1.5rem;
   font-family: 'Georgia', serif;
   font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .about-subtitle {
   font-size: 1.8rem;
-  color: #555;
+  color: #e8d5c0;
   text-align: center;
   margin-bottom: 3rem;
   font-weight: 400;
@@ -154,14 +181,14 @@
 .about-text {
   font-size: 1.4rem;
   line-height: 1.8;
-  color: #444;
+  color: #f5e6d3;
   margin-bottom: 2.5rem;
   text-align: left;
 }
 
 .section-heading {
   font-size: 2.2rem;
-  color: #1a4d2e;
+  color: #d4af37;
   margin-top: 3rem;
   margin-bottom: 1.5rem;
   font-family: 'Georgia', serif;
@@ -174,14 +201,14 @@
 
 .about-invitation {
   font-size: 1.8rem;
-  color: #1a4d2e;
+  color: #d4af37;
   margin-top: 4rem;
   font-weight: 600;
   text-align: center;
   font-family: 'Georgia', serif;
   font-style: italic;
   padding-top: 3rem;
-  border-top: 2px solid rgba(26, 77, 46, 0.2);
+  border-top: 2px solid rgba(212, 175, 55, 0.4);
 }
 
 /* Responsywność */
