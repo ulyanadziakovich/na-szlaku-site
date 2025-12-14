@@ -1,22 +1,18 @@
 <template>
   <section class="reviews-section">
-    <div class="reviews-container">
-      <h2 class="reviews-title">Opinie naszych gości</h2>
-
-      <div class="rating-summary">
-        <div class="rating-score">4.8</div>
-        <div class="rating-stars">★★★★★</div>
-        <div class="rating-count">51 opinii</div>
-      </div>
-
+    <div class="reviews-content">
       <div class="carousel">
         <button
           class="carousel-btn prev"
           @click="prevSlide"
-          :disabled="currentIndex === 0"
         >‹</button>
 
-        <div class="carousel-track-container">
+        <div
+          class="carousel-track-container"
+          @touchstart="handleTouchStart"
+          @touchmove="handleTouchMove"
+          @touchend="handleTouchEnd"
+        >
           <div
             class="carousel-track"
             :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
@@ -27,51 +23,51 @@
                   <div class="author-avatar">{{ review.initials }}</div>
                   <div class="author-info">
                     <h3 class="author-name">{{ review.name }}</h3>
-                    <p class="author-meta">{{ review.meta }}</p>
+                    <p class="author-meta">{{ review.time }}</p>
                   </div>
                 </div>
-                <div class="review-stars">★★★★★</div>
+                <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_74x24dp.png" alt="Google" class="google-logo" />
               </div>
-              <div class="review-time">{{ review.time }}</div>
-              <p class="review-text">{{ review.text }}</p>
+              <div class="review-stars">★★★★★</div>
+              <div>
+                <p class="review-text" :class="{ expanded: expandedReviews[index] }">{{ review.text }}</p>
+                <button
+                  v-if="review.text.length > 120"
+                  @click="toggleReview(index)"
+                  class="show-more-btn"
+                >
+                  {{ expandedReviews[index] ? 'Pokaż mniej' : 'Pokaż więcej' }}
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
         <button
           class="carousel-btn next"
-          @click="nextSlide"
-          :disabled="currentIndex === reviews.length - 1"
+          @click="() => { nextSlide(); resetAutoplay(); }"
         >›</button>
       </div>
 
-      <div class="carousel-dots">
-        <button
+      <!-- Indicators/dots dla mobile -->
+      <div class="carousel-indicators">
+        <span
           v-for="(review, index) in reviews"
           :key="index"
-          class="dot"
-          :class="{ active: currentIndex === index }"
+          :class="['indicator-dot', { active: currentIndex === index }]"
           @click="goToSlide(index)"
-        ></button>
+        ></span>
       </div>
-
-      <!-- POPRAWIONY PRZYCISK – idealnie wyśrodkowany i ładny na telefonie -->
-      <a
-        href="https://www.google.com/search?sa=X&sca_esv=2befaf33c0068c33&hl=pl-PL&tbm=lcl&sxsrf=AE3TifOpVDOegtRGnq5zdfFpXzuSMkWybA:1763380357066&q=Przystanek%20na%20Szlaku%20-%20bufet%20Opinie&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDYxMjQyMAMSpqamFmamlsbmGxgZXzEqBxRVVRaXJOalZivkJSoEV-UkZpcq6Coklaallij4F2TmZaYuYiVGFQAvxvjrZwAAAA&rldimm=13421206212555865937&ved=0CAgQ5foLahcKEwjIi8fej_mQAxUAAAAAHQAAAAAQCg&biw=1440&bih=812&dpr=2#lkt=LocalPoiReviews&arid=Ci9DQUlRQUNvZENodHljRjlvT2pCdGVsZEdRMlphWjBWMldUTXpUR1ZqZHpkWFMwRRAB"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="more-reviews-btn"
-      >
-        Zobacz więcej opinii
-      </a>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
 
 const currentIndex = ref(0)
+const expandedReviews = reactive({})
+let autoplayInterval = null
 
 const reviews = [
   { name: 'Kamil Pergoł', initials: 'KP', meta: 'Lokalny przewodnik · 36 opinii · 89 zdjęć', time: '3 tygodnie temu', text: 'Polecam ten punkt ; Jedzenie wyśmienite. Właścicielka 100 % profesjonalizm...' },
@@ -81,18 +77,102 @@ const reviews = [
   { name: 'Wera F', initials: 'WF', meta: '4 opinie · 1 zdjęcie', time: 'miesiąc temu', text: 'Cudowna obsługa oraz pyszne jedzonko! Szczególnie polecam pierogi...' }
 ]
 
-const nextSlide = () => { if (currentIndex.value < reviews.length - 1) currentIndex.value++ }
-const prevSlide = () => { if (currentIndex.value > 0) currentIndex.value-- }
-const goToSlide = (index) => { currentIndex.value = index }
+const nextSlide = () => {
+  currentIndex.value = (currentIndex.value + 1) % reviews.length
+}
+
+const prevSlide = () => {
+  currentIndex.value = currentIndex.value === 0 ? reviews.length - 1 : currentIndex.value - 1
+  resetAutoplay()
+}
+
+const goToSlide = (index) => {
+  currentIndex.value = index
+  resetAutoplay()
+}
+
+const toggleReview = (index) => {
+  expandedReviews[index] = !expandedReviews[index]
+}
+
+// Autoplay functionality
+const startAutoplay = () => {
+  autoplayInterval = setInterval(() => {
+    nextSlide()
+  }, 5000) // Przewija co 5 sekund
+}
+
+const stopAutoplay = () => {
+  if (autoplayInterval) {
+    clearInterval(autoplayInterval)
+    autoplayInterval = null
+  }
+}
+
+const resetAutoplay = () => {
+  stopAutoplay()
+  startAutoplay()
+}
+
+// Start autoplay when component mounts
+onMounted(() => {
+  startAutoplay()
+})
+
+// Clean up when component unmounts
+onUnmounted(() => {
+  stopAutoplay()
+})
+
+// Touch handling for swipe
+let touchStartX = 0
+let touchEndX = 0
+
+const handleTouchStart = (e) => {
+  touchStartX = e.touches[0].clientX
+}
+
+const handleTouchMove = (e) => {
+  touchEndX = e.touches[0].clientX
+}
+
+const handleTouchEnd = () => {
+  const swipeThreshold = 50
+  const diff = touchStartX - touchEndX
+
+  if (Math.abs(diff) > swipeThreshold) {
+    if (diff > 0) {
+      // Swipe left - next slide
+      nextSlide()
+    } else {
+      // Swipe right - previous slide
+      prevSlide()
+    }
+    resetAutoplay()
+  }
+
+  touchStartX = 0
+  touchEndX = 0
+}
 </script>
 
 <style scoped>
 .reviews-section {
-  background: linear-gradient(135deg, #4a4139 0%, #564d43 50%, #4a4139 100%);
-  padding: 4rem 2rem;
   position: relative;
+  min-height: 70vh;
+  background-image: url('/03.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 3rem 0;
 }
 
+/* Dark overlay */
 .reviews-section::before {
   content: '';
   position: absolute;
@@ -100,156 +180,250 @@ const goToSlide = (index) => { currentIndex.value = index }
   left: 0;
   width: 100%;
   height: 100%;
-  background-image:
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(139, 127, 116, 0.03) 10px,
-      rgba(139, 127, 116, 0.03) 20px
-    );
+  background: rgba(0, 0, 0, 0.5);
   pointer-events: none;
+  z-index: 0;
 }
 
-.reviews-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;           /* ← najważniejsze dla wyśrodkowania przycisku */
+.reviews-content {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
 }
-
-.reviews-title {
-  text-align: center;
-  font-size: 2.5rem;
-  color: #d4af37;
-  margin-bottom: 2rem;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-}
-
-.rating-summary {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.rating-score { font-size: 3rem; font-weight: bold; color: #d4af37; }
-.rating-stars { font-size: 1.5rem; color: #d4af37; }
-.rating-count { font-size: 1rem; color: #e8d5c0; }
 
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 800px;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 2rem;
 }
 
-.carousel-track-container { flex: 1; overflow: hidden; }
-.carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
+.carousel-track-container {
+  flex: 1;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
 
 .review-card {
   min-width: 100%;
-  background: linear-gradient(135deg, #3d3832 0%, #4a4139 100%);
-  border-radius: 12px;
-  border: 2px solid #8b7f74;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
+  backdrop-filter: blur(10px);
 }
 
-/* reszta stylów bez zmian – zostawiam dla czytelności */
-.review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
-.review-author { display: flex; gap: 1rem; align-items: center; }
-.author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%); color: #2a2420; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; flex-shrink: 0; border: 2px solid #8b7f74; }
-.author-name { font-size: 1.1rem; font-weight: 600; color: #f5e6d3; margin: 0; }
-.author-meta { font-size: 0.85rem; color: #e8d5c0; margin: 0.25rem 0 0; }
-.review-stars { color: #d4af37; font-size: 1.2rem; }
-.review-time { font-size: 0.85rem; color: #e8d5c0; margin-bottom: 1rem; }
-.review-text { font-size: 1rem; line-height: 1.6; color: #f5e6d3; }
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
 
-.carousel-btn {
-  background: linear-gradient(135deg, #4a4139 0%, #564d43 100%);
-  border: 2px solid #8b7f74;
-  border-radius: 50%;
+.review-author {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.author-avatar {
   width: 48px;
   height: 48px;
+  border-radius: 50%;
+  background: #e67e22;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.author-meta {
+  font-size: 0.8rem;
+  color: #666666;
+  margin: 0.25rem 0 0;
+}
+
+.google-logo {
+  height: 24px;
+  width: auto;
+}
+
+.review-stars {
+  color: #ffa500;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333333;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.review-text.expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+}
+
+.show-more-btn {
+  background: none;
+  border: none;
+  color: #1a73e8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0 0 0;
+  margin-top: 0.5rem;
+  transition: color 0.3s;
+}
+
+.show-more-btn:hover {
+  color: #0d47a1;
+  text-decoration: underline;
+}
+
+.carousel-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  color: #d4af37;
+  color: #1a1a1a;
   cursor: pointer;
   transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
 }
-.carousel-btn:hover:not(:disabled) { background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%); color: #2a2420; border-color: #d4af37; }
-.carousel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
-.carousel-dots {
-  display: flex;
+.carousel-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Indicators/dots */
+.carousel-indicators {
+  display: none;
   justify-content: center;
   gap: 0.5rem;
-  margin-bottom: 2.5rem;
+  margin-top: 1.5rem;
 }
-.dot {
-  width: 12px;
-  height: 12px;
+
+.indicator-dot {
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: rgba(139, 127, 116, 0.4);
-  border: none;
+  background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   transition: all 0.3s;
 }
-.dot:hover { background: rgba(212, 175, 55, 0.6); }
-.dot.active { background: #d4af37; width: 32px; border-radius: 6px; }
 
-/* POPRAWIONY PRZYCISK – teraz wygląda idealnie na każdym telefonie */
-.more-reviews-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%);
-  color: #2a2420;
-  text-decoration: none;
-  border-radius: 8px;
-  border: 2px solid #d4af37;
-  font-size: 1.1rem;
-  font-weight: 700;
-  transition: all 0.3s;
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-  min-width: 280px;           /* ← stała szerokość */
-  width: fit-content;
-  margin: 0 auto;             /* ← idealnie wyśrodkowany */
+.indicator-dot.active {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.3);
 }
 
-.more-reviews-btn:hover {
-  background: linear-gradient(135deg, #f5e6d3 0%, #d4af37 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
-  border-color: #f5e6d3;
-}
-
-/* RESPONSIVE – przycisk pozostaje ładny */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .reviews-section { padding: 3rem 1rem; }
-  .reviews-title { font-size: 2rem; }
-  .more-reviews-btn {
-    padding: 1rem 2rem;
-    font-size: 1.05rem;
-    min-width: 260px;
+  .reviews-section {
+    background-attachment: scroll;
+    min-height: 60vh;
+    padding: 2rem 0;
+  }
+
+  .reviews-content {
+    padding: 1rem;
+  }
+
+  .carousel {
+    gap: 0;
+  }
+
+  /* UKRYJ STRZAŁKI NA MOBILCE */
+  .carousel-btn {
+    display: none;
+  }
+
+  .carousel-track-container {
+    width: 100%;
+    touch-action: pan-y;
+    user-select: none;
+  }
+
+  .carousel-track {
+    gap: 0;
+  }
+
+  .review-card {
+    min-width: 100%;
+    padding: 1.5rem;
+    margin: 0;
+  }
+
+  /* POKAŻ INDICATORS NA MOBILCE */
+  .carousel-indicators {
+    display: flex;
   }
 }
 
 @media (max-width: 480px) {
-  .reviews-title { font-size: 1.8rem; }
-  .more-reviews-btn {
-    padding: 0.9rem 1.8rem;
+  .reviews-section {
+    min-height: 50vh;
+    padding: 1.5rem 0;
+  }
+
+  .carousel {
+    gap: 0.5rem;
+  }
+
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+
+  .review-card {
+    padding: 1.25rem;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
     font-size: 1rem;
-    min-width: 240px;
   }
 }
 </style>

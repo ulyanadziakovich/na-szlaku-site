@@ -43,37 +43,11 @@
 
 <style scoped>
 .about-section {
-  background: linear-gradient(135deg, #3d3832 0%, #4a4139 50%, #3d3832 100%);
+  background: #ffffff;
   min-height: 100vh;
   padding: 6rem 2rem;
   position: relative;
   overflow: hidden;
-}
-
-.about-section::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 3px,
-      rgba(139, 127, 116, 0.05) 3px,
-      rgba(139, 127, 116, 0.05) 6px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 80px,
-      rgba(139, 127, 116, 0.03) 80px,
-      rgba(139, 127, 116, 0.03) 160px
-    );
-  pointer-events: none;
-  z-index: 0;
 }
 
 /* Animowane listki w tle */
@@ -165,12 +139,12 @@
   margin-bottom: 1.5rem;
   font-family: 'Georgia', serif;
   font-weight: 700;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .about-subtitle {
   font-size: 1.8rem;
-  color: #e8d5c0;
+  color: #666666;
   text-align: center;
   margin-bottom: 3rem;
   font-weight: 400;
@@ -181,7 +155,7 @@
 .about-text {
   font-size: 1.4rem;
   line-height: 1.8;
-  color: #f5e6d3;
+  color: #333333;
   margin-bottom: 2.5rem;
   text-align: left;
 }

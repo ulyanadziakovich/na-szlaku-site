@@ -1,8 +1,6 @@
 <template>
-  <section class="catering-page">
+  <section class="catering-section">
     <div class="container">
-      <NuxtLink to="/" class="back-btn">← Powrót na stronę główną</NuxtLink>
-
       <h1 class="catering-title">Catering i organizacja przyjęć</h1>
       <p class="intro-text">
         Zapraszamy do skorzystania z naszych usług cateringowych oraz organizacji wydarzeń okolicznościowych.
@@ -40,39 +38,17 @@
 </template>
 
 <script setup>
-// bez zmian
+// Sekcja Catering na stronie głównej
 </script>
 
 <style scoped>
-.catering-page {
+.catering-section {
   padding: 6rem 2rem;
-  min-height: 100vh;
   background: #ffffff;
   position: relative;
 }
 
 .container { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
-
-.back-btn {
-  display: inline-block;
-  font-size: 1.2rem;
-  color: #2a2420;
-  text-decoration: none;
-  padding: 0.8rem 1.5rem;
-  background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%);
-  border: 2px solid #d4af37;
-  border-radius: 50px;
-  font-weight: 700;
-  transition: all 0.3s;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-}
-
-.back-btn:hover {
-  background: linear-gradient(135deg, #f5e6d3 0%, #d4af37 100%);
-  transform: translateX(-5px);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-}
 
 .catering-title {
   font-size: 3.5rem; color: #d4af37; text-align: center; margin-bottom: 2rem;
@@ -121,11 +97,11 @@
   .phone-wrapper { text-align: center; }
 
   .contact-phone {
-    font-size: 1.7rem;           /* mniejszy tekst */
-    padding: 0.9rem 2.2rem;       /* mniejszy padding */
-    min-width: 260px;             /* stała szerokość – wygląda elegancko */
+    font-size: 1.7rem;
+    padding: 0.9rem 2.2rem;
+    min-width: 260px;
     width: fit-content;
-    margin: 0 auto;               /* idealnie wyśrodkowany */
+    margin: 0 auto;
     display: inline-flex;
     justify-content: center;
   }
@@ -141,19 +117,19 @@
 
 /* reszta responsywności bez zmian */
 @media (max-width: 968px) {
-  .catering-page { padding: 5rem 1.5rem; }
+  .catering-section { padding: 5rem 1.5rem; }
   .catering-title { font-size: 3rem; }
   .intro-text { font-size: 1.5rem; }
 }
 @media (max-width: 768px) {
-  .catering-page { padding: 4rem 1.5rem; }
+  .catering-section { padding: 4rem 1.5rem; }
   .catering-title { font-size: 2.5rem; }
   .intro-text { font-size: 1.4rem; margin-bottom: 3rem; }
   .section-title { font-size: 1.9rem; }
   .section-text { font-size: 1.2rem; }
 }
 @media (max-width: 480px) {
-  .catering-page { padding: 3rem 1rem; }
+  .catering-section { padding: 3rem 1rem; }
   .catering-title { font-size: 2.2rem; }
   .intro-text { font-size: 1.2rem; }
   .section-title { font-size: 1.7rem; }

@@ -7,6 +7,10 @@
       <AboutSection />
     </div>
     <ReviewsSection />
+    <div id="catering">
+      <CateringSection />
+    </div>
+    <ParallaxBanner />
     <ContactSection />
   </div>
 </template>

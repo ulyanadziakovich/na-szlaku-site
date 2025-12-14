@@ -71,27 +71,8 @@ const prevSlide = () => {
 .galeria-page {
   padding: 6rem 2rem;
   min-height: 100vh;
-  background: linear-gradient(135deg, #3d3832 0%, #4a4139 50%, #3d3832 100%);
+  background: #ffffff;
   position: relative;
-}
-
-.galeria-page::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(139, 127, 116, 0.03) 10px,
-      rgba(139, 127, 116, 0.03) 20px
-    );
-  pointer-events: none;
-  z-index: 0;
 }
 
 .container {
@@ -133,7 +114,7 @@ const prevSlide = () => {
 
 .subtitle {
   font-size: 1.6rem;
-  color: #e8d5c0;
+  color: #666666;
   margin-bottom: 4rem;
   text-align: center;
 }

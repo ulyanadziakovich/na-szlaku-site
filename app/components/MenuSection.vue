@@ -15,15 +15,17 @@
 
       <!-- Informacja o aktualnym menu -->
       <div class="menu-info">
+        <h3 class="menu-heading">Sprawdź dzisiejsze menu!</h3>
         <p class="menu-text">
-          Aktualne menu na dziś można zobaczyć
+          Codziennie przygotowujemy nowe, świeże dania.
+          Aktualne propozycje na dziś znajdziesz na naszym
           <a
             href="https://www.facebook.com/p/Przystanek-na-Szlaku-100091893895594/"
             target="_blank"
             rel="noopener noreferrer"
             class="menu-link"
           >
-            tutaj
+            Facebooku
           </a>
         </p>
       </div>
@@ -34,40 +36,23 @@
 <script setup>
 // Kafelki do automatycznego przesuwania
 const tiles = [
-  { src: '/1j.jpg', alt: 'Kolczyk 1' },
-  { src: '/2j.jpg', alt: 'Kolczyk 2' },
-  { src: '/3j.jpg', alt: 'Kolczyk 3' },
-  { src: '/4j.jpg', alt: 'Kolczyk 4' },
-  { src: '/5j.jpg', alt: 'Kolczyk 5' },
-  { src: '/6j.jpg', alt: 'Kolczyk 6' },
+  { src: '/1j.jpg', alt: 'Danie 1' },
+  { src: '/2j.jpg', alt: 'Danie 2' },
+  { src: '/3j.jpg', alt: 'Danie 3' },
+  { src: '/4j.jpg', alt: 'Danie 4' },
+  { src: '/5j.jpg', alt: 'Danie 5' },
+  { src: '/6j.jpg', alt: 'Danie 6' },
 ]
 </script>
 
 <style scoped>
 .menu-section {
   padding: 4rem 2rem;
-  background: linear-gradient(135deg, #3d3832 0%, #4a4139 50%, #3d3832 100%);
+  background: #000000;
   min-height: 60vh;
   position: relative;
 }
 
-.menu-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 2px,
-      rgba(139, 127, 116, 0.03) 2px,
-      rgba(139, 127, 116, 0.03) 4px
-    );
-  pointer-events: none;
-}
 
 .container {
   max-width: 1400px;
@@ -85,17 +70,29 @@ const tiles = [
 .menu-info {
   text-align: center;
   margin-top: 3rem;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   background: rgba(139, 127, 116, 0.15);
   border-radius: 12px;
   border: 2px solid #8b7f74;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+}
+
+.menu-heading {
+  font-size: 2rem;
+  color: #d4af37;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .menu-text {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #f5e6d3;
   margin: 0;
   font-weight: 400;
+  line-height: 1.6;
 }
 
 .menu-link {
@@ -175,8 +172,12 @@ const tiles = [
     gap: 1.5rem;
   }
 
+  .menu-heading {
+    font-size: 1.6rem;
+  }
+
   .menu-text {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 }
 
@@ -193,13 +194,18 @@ const tiles = [
     animation: scroll 25s linear infinite;
   }
 
+  .menu-heading {
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+  }
+
   .menu-text {
     font-size: 0.95rem;
   }
 
   .menu-info {
     margin-top: 2rem;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
   }
 }
 </style>

@@ -18,13 +18,13 @@
         <div class="mobile-menu-content">
           <!-- Logo in mobile menu -->
           <NuxtLink to="/" class="mobile-logo" @click="closeMobileMenu">
-            <img src="/logo.png" alt="Logo restauracji" class="logo-img" />
+            <img src="/logonaszlaku.png" alt="Logo restauracji" class="logo-img" />
           </NuxtLink>
 
           <ul class="mobile-menu-list">
           <!-- Catering -->
           <li>
-            <NuxtLink to="/catering" @click="closeMobileMenu">Catering</NuxtLink>
+            <NuxtLink to="/#catering" @click="handleCateringClick">Catering</NuxtLink>
           </li>
 
           <!-- Godziny otwarcia (dropdown) -->
@@ -113,7 +113,7 @@
       <!-- Desktop menu (hidden on mobile) -->
       <ul class="desktop-menu">
         <li>
-          <NuxtLink to="/catering">Catering</NuxtLink>
+          <NuxtLink to="/#catering" @click="onCateringClick">Catering</NuxtLink>
         </li>
         <li class="dropdown">
           <button @click="toggleHours" @blur="closeHours" class="dropdown-toggle">
@@ -166,8 +166,8 @@
       </ul>
 
       <!-- Desktop logo (hidden on mobile) -->
-      <NuxtLink to="/" class="desktop-logo">
-        <img src="/logoszlak.png" alt="Logo restauracji" class="logo-img" />
+      <NuxtLink to="/" class="desktop-logo" @click="scrollToTop">
+        <img src="/naszlakulogo.png" alt="Logo restauracji" class="logo-img" />
       </NuxtLink>
     </div>
   </nav>
@@ -249,18 +249,42 @@ const handleOnasClick = (e) => {
   }
   closeMobileMenu()
 }
+
+const onCateringClick = (e) => {
+  if (route.path === '/') {
+    e.preventDefault()
+    scrollTo('catering')
+  }
+}
+
+const handleCateringClick = (e) => {
+  if (route.path === '/') {
+    e.preventDefault()
+    scrollTo('catering')
+  }
+  closeMobileMenu()
+}
+
+const scrollToTop = (e) => {
+  if (route.path === '/') {
+    e.preventDefault()
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
 </script>
 
 
 <style scoped>
 .navigation {
-  background: linear-gradient(180deg, #3d3832 0%, #4a4139 100%);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  position: sticky;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   height: 50px;
-  border-bottom: 2px solid #8b7f74;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .nav-container {
@@ -275,28 +299,7 @@ const handleOnasClick = (e) => {
 }
 
 .nav-container::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(
-    to right,
-    #d4af37 0%,
-    #d4af37 15%,
-    transparent 15%,
-    transparent 20%,
-    #d4af37 20%,
-    #d4af37 80%,
-    transparent 80%,
-    transparent 85%,
-    #d4af37 85%,
-    #d4af37 100%
-  );
-  z-index: 0;
-  pointer-events: none;
+  display: none;
 }
 
 /* Hamburger button (mobile only) */
@@ -440,14 +443,14 @@ const handleOnasClick = (e) => {
 }
 
 .desktop-logo .logo-img {
-  height: 160px;
+  height: 200px;
   width: auto;
   display: block;
   transition: opacity 0.3s;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
   position: relative;
   z-index: 2;
-  margin-top: 50%;
+  margin-top: 60%;
   text-align: center;
 }
 
@@ -466,7 +469,7 @@ const handleOnasClick = (e) => {
   height: 100%;
   position: relative;
   z-index: 1;
-  background: linear-gradient(180deg, #3d3832 0%, #4a4139 100%);
+  background: #ffffff;
   padding: 0 10px;
 }
 
@@ -484,7 +487,7 @@ const handleOnasClick = (e) => {
   height: 100%;
   padding: 0;
   text-decoration: none;
-  color: #f5e6d3;
+  color: #333333;
   font-size: 1.3rem;
   font-weight: 500;
   transition: color 0.3s;
@@ -652,6 +655,7 @@ const handleOnasClick = (e) => {
   .navigation {
     background: transparent;
     box-shadow: none;
+    border-bottom: none;
     height: auto;
     position: fixed;
     top: 20px;
@@ -697,9 +701,15 @@ const handleOnasClick = (e) => {
     margin: 0;
   }
 
-  /* Ukrywamy logo w menu mobilnym */
+  /* Logo w menu mobilnym */
   .mobile-logo {
-    display: none !important;
+    display: block !important;
+    margin-bottom: 2rem;
+  }
+
+  .mobile-logo .logo-img {
+    height: 120px;
+    width: auto;
   }
 
   /* Lista – zajmuje cały ekran */
