@@ -18,7 +18,7 @@
         <div class="mobile-menu-content">
           <!-- Logo in mobile menu -->
           <NuxtLink to="/" class="mobile-logo" @click="closeMobileMenu">
-            <img src="/logonaszlaku.png" alt="Logo restauracji" class="logo-img" />
+            <img src="/gemini1.webp" alt="Logo restauracji" class="logo-img" />
           </NuxtLink>
 
           <ul class="mobile-menu-list">
@@ -167,7 +167,7 @@
 
       <!-- Desktop logo (hidden on mobile) -->
       <NuxtLink to="/" class="desktop-logo" @click="scrollToTop">
-        <img src="/naszlakulogo.png" alt="Logo restauracji" class="logo-img" />
+        <img src="/gemini1.webp" alt="Logo restauracji" class="logo-img" />
       </NuxtLink>
     </div>
   </nav>
@@ -320,7 +320,7 @@ const scrollToTop = (e) => {
 .hamburger-btn span {
   width: 100%;
   height: 3px;
-  background: #d4af37;
+  background: #8b5a3f;
   border-radius: 2px;
   transition: all 0.3s;
   transform-origin: center;
@@ -418,7 +418,7 @@ const scrollToTop = (e) => {
 .mobile-menu-list a:hover,
 .mobile-menu-list .dropdown-toggle:hover {
   background: rgba(212, 175, 55, 0.2);
-  color: #d4af37;
+  color: #8b5a3f;
 }
 
 .mobile-menu-list .dropdown-content {
@@ -443,14 +443,14 @@ const scrollToTop = (e) => {
 }
 
 .desktop-logo .logo-img {
-  height: 200px;
+  height: 140px;
   width: auto;
   display: block;
   transition: opacity 0.3s;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
   position: relative;
   z-index: 2;
-  margin-top: 60%;
+  margin-top: 5px;
   text-align: center;
 }
 
@@ -499,7 +499,7 @@ const scrollToTop = (e) => {
 
 .desktop-menu a:hover,
 .desktop-menu .dropdown-toggle:hover {
-  color: #d4af37;
+  color: #8b5a3f;
 }
 
 .dropdown {
@@ -556,7 +556,7 @@ const scrollToTop = (e) => {
 }
 
 .contact-item strong {
-  color: #d4af37;
+  color: #8b5a3f;
 }
 
 .contact-item a {
@@ -585,11 +585,11 @@ const scrollToTop = (e) => {
 
 .voucher-info p:first-child {
   font-weight: 600;
-  color: #d4af37;
+  color: #8b5a3f;
 }
 
 .voucher-info a {
-  color: #d4af37;
+  color: #8b5a3f;
   text-decoration: none;
   font-weight: 600;
 }
@@ -615,7 +615,7 @@ const scrollToTop = (e) => {
 }
 
 .time {
-  color: #d4af37;
+  color: #8b5a3f;
 }
 
 .time.closed {
@@ -708,7 +708,7 @@ const scrollToTop = (e) => {
   }
 
   .mobile-logo .logo-img {
-    height: 120px;
+    height: 110px;
     width: auto;
   }
 
@@ -755,7 +755,7 @@ const scrollToTop = (e) => {
   .mobile-menu-list a:hover,
   .mobile-menu-list .dropdown-toggle:hover {
     background: rgba(212, 175, 55, 0.15);
-    color: #d4af37;
+    color: #8b5a3f;
   }
 
   /* Strzałka – mała, po prawej */
@@ -900,7 +900,7 @@ const scrollToTop = (e) => {
   /* Tytuł nie może wychodzić poza ekran */
   .modal-title {
     font-size: 1.8rem;
-    color: #d4af37;
+    color: #8b5a3f;
     margin-bottom: 1.5rem;
     font-weight: 700;
     text-align: center;
@@ -935,7 +935,7 @@ const scrollToTop = (e) => {
   }
 
   .modal-body .hours-item .time {
-    color: #d4af37;
+    color: #8b5a3f;
     font-weight: 500;
     text-align: right;
   }
@@ -973,7 +973,7 @@ const scrollToTop = (e) => {
 
   .modal-body .contact-item strong {
     display: block;
-    color: #d4af37;
+    color: #8b5a3f;
     font-size: 1rem;
     margin-bottom: 0.4rem;
   }
@@ -998,12 +998,12 @@ const scrollToTop = (e) => {
 
   .modal-body .voucher-info p:first-child {
     font-weight: 600;
-    color: #d4af37;
+    color: #8b5a3f;
     font-size: 1.1rem;
   }
 
   .modal-body .voucher-info a {
-    color: #d4af37;
+    color: #8b5a3f;
     font-weight: 600;
     text-decoration: none;
   }
@@ -1019,7 +1019,7 @@ const scrollToTop = (e) => {
     background: rgba(212, 175, 55, 0.2);
     border: none;
     font-size: 2.2rem;
-    color: #d4af37;
+    color: #8b5a3f;
     width: 44px;
     height: 44px;
     border-radius: 50%;

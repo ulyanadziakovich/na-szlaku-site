@@ -9,6 +9,15 @@
       <div class="leaf leaf-5"></div>
     </div>
 
+    <!-- Dekoracyjne grafiki warzyw -->
+    <div class="veggie-decorations">
+      <img src="/tomato1.png" alt="Pomidor" class="veggie veggie-1" />
+      <img src="/onion.png" alt="Cebula" class="veggie veggie-2" />
+      <img src="/garlic.png" alt="Czosnek" class="veggie veggie-3" />
+      <img src="/tomato.png" alt="Pomidor" class="veggie veggie-4" />
+      <img src="/onion.png" alt="Cebula" class="veggie veggie-5" />
+    </div>
+
     <div class="about-container">
       <h1 class="about-title">O nas</h1>
       <h2 class="about-subtitle">Witamy w sercu kulinarnych tradycji</h2>
@@ -65,7 +74,7 @@
   position: absolute;
   width: 30px;
   height: 30px;
-  background: #d4af37;
+  background: #8b5a3f;
   clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
   opacity: 0.2;
   animation: float 15s infinite ease-in-out;
@@ -125,6 +134,65 @@
   }
 }
 
+/* Dekoracyjne grafiki warzyw */
+.veggie-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.veggie {
+  position: absolute;
+  width: 60px;
+  height: auto;
+  opacity: 0.3;
+  animation: float 12s infinite ease-in-out;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.veggie-1 {
+  top: 15%;
+  right: 10%;
+  animation-delay: 0s;
+  animation-duration: 14s;
+}
+
+.veggie-2 {
+  top: 40%;
+  left: 5%;
+  animation-delay: 2s;
+  animation-duration: 16s;
+  width: 50px;
+}
+
+.veggie-3 {
+  top: 70%;
+  right: 15%;
+  animation-delay: 4s;
+  animation-duration: 13s;
+  width: 55px;
+}
+
+.veggie-4 {
+  top: 25%;
+  left: 80%;
+  animation-delay: 6s;
+  animation-duration: 15s;
+  width: 50px;
+}
+
+.veggie-5 {
+  top: 85%;
+  left: 25%;
+  animation-delay: 8s;
+  animation-duration: 17s;
+  width: 45px;
+}
+
 .about-container {
   max-width: 900px;
   margin: 0 auto;
@@ -134,7 +202,7 @@
 
 .about-title {
   font-size: 3.5rem;
-  color: #d4af37;
+  color: #8b5a3f;
   text-align: center;
   margin-bottom: 1.5rem;
   font-family: 'Georgia', serif;
@@ -162,7 +230,7 @@
 
 .section-heading {
   font-size: 2.2rem;
-  color: #d4af37;
+  color: #8b5a3f;
   margin-top: 3rem;
   margin-bottom: 1.5rem;
   font-family: 'Georgia', serif;
@@ -175,14 +243,14 @@
 
 .about-invitation {
   font-size: 1.8rem;
-  color: #d4af37;
+  color: #8b5a3f;
   margin-top: 4rem;
   font-weight: 600;
   text-align: center;
   font-family: 'Georgia', serif;
   font-style: italic;
   padding-top: 3rem;
-  border-top: 2px solid rgba(212, 175, 55, 0.4);
+  border-top: 2px solid rgba(139, 90, 63, 0.4);
 }
 
 /* Responsywność */

@@ -1,5 +1,12 @@
 <template>
   <section class="menu-section" id="menu">
+    <!-- Dekoracyjne grafiki warzyw -->
+    <div class="veggie-decorations">
+      <img src="/garlic.png" alt="Czosnek" class="veggie veggie-1" />
+      <img src="/tomato1.png" alt="Pomidor" class="veggie veggie-2" />
+      <img src="/onion.png" alt="Cebula" class="veggie veggie-3" />
+    </div>
+
     <div class="container">
       <!-- Sekcja z płynnie przesuwającymi się kafelkami -->
       <div class="tiles-section">
@@ -48,11 +55,59 @@ const tiles = [
 <style scoped>
 .menu-section {
   padding: 4rem 2rem;
-  background: #000000;
+  background: #ffffff;
   min-height: 60vh;
   position: relative;
+  overflow: hidden;
 }
 
+/* Dekoracyjne grafiki warzyw */
+.veggie-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.veggie {
+  position: absolute;
+  width: 70px;
+  height: auto;
+  opacity: 0.25;
+  animation: floatVeggie 15s infinite ease-in-out;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+}
+
+.veggie-1 {
+  top: 10%;
+  left: 8%;
+  animation-delay: 0s;
+  width: 60px;
+}
+
+.veggie-2 {
+  top: 60%;
+  right: 12%;
+  animation-delay: 3s;
+  width: 65px;
+}
+
+.veggie-3 {
+  bottom: 15%;
+  left: 15%;
+  animation-delay: 6s;
+  width: 55px;
+}
+
+@keyframes floatVeggie {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-15px) rotate(5deg); }
+  50% { transform: translateY(-8px) rotate(-5deg); }
+  75% { transform: translateY(-20px) rotate(3deg); }
+}
 
 .container {
   max-width: 1400px;
@@ -79,7 +134,7 @@ const tiles = [
 
 .menu-heading {
   font-size: 2rem;
-  color: #d4af37;
+  color: #8b5a3f;
   margin: 0 0 1rem 0;
   font-weight: 700;
   text-transform: uppercase;
@@ -89,14 +144,14 @@ const tiles = [
 
 .menu-text {
   font-size: 1.2rem;
-  color: #f5e6d3;
+  color: #666666;
   margin: 0;
   font-weight: 400;
   line-height: 1.6;
 }
 
 .menu-link {
-  color: #d4af37;
+  color: #8b5a3f;
   font-weight: 600;
   text-decoration: none;
   border-bottom: 2px solid transparent;
@@ -104,8 +159,8 @@ const tiles = [
 }
 
 .menu-link:hover {
-  color: #f5e6d3;
-  border-bottom-color: #d4af37;
+  color: #6b4a33;
+  border-bottom-color: #8b5a3f;
 }
 
 .tiles-scroll-container {
@@ -149,7 +204,7 @@ const tiles = [
 .tile:hover {
   transform: translateY(-8px);
   box-shadow: 0 15px 35px rgba(0,0,0,0.7);
-  border-color: #d4af37;
+  border-color: #8b5a3f;
 }
 
 .tile img {

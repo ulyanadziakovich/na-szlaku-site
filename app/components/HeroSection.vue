@@ -64,25 +64,25 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%);
-  color: #2a2420;
+  background: linear-gradient(135deg, #8b5a3f 0%, #8b7f74 100%);
+  color: #ffffff;
   padding: 0.9rem 2.5rem;
   border-radius: 50px;
-  border: 2px solid #d4af37;
+  border: 2px solid #8b5a3f;
   text-decoration: none;
   font-weight: 700;
   font-size: 1.1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 6px 20px rgba(139, 90, 63, 0.4);
   min-width: 200px;
   text-align: center;
 }
 
 .hero-btn:hover {
-  background: linear-gradient(135deg, #f5e6d3 0%, #d4af37 100%);
+  background: linear-gradient(135deg, #a67c52 0%, #8b5a3f 100%);
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
-  border-color: #f5e6d3;
+  box-shadow: 0 10px 30px rgba(139, 90, 63, 0.6);
+  border-color: #a67c52;
 }
 
 /* Responsywność */

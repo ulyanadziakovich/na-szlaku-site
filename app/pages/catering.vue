@@ -59,23 +59,23 @@
   color: #2a2420;
   text-decoration: none;
   padding: 0.8rem 1.5rem;
-  background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%);
-  border: 2px solid #d4af37;
+  background: linear-gradient(135deg, #8b5a3f 0%, #8b7f74 100%);
+  border: 2px solid #8b5a3f;
   border-radius: 50px;
   font-weight: 700;
   transition: all 0.3s;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 4px 12px rgba(139, 90, 63, 0.3);
 }
 
 .back-btn:hover {
-  background: linear-gradient(135deg, #f5e6d3 0%, #d4af37 100%);
+  background: linear-gradient(135deg, #a67c52 0%, #8b5a3f 100%);
   transform: translateX(-5px);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 6px 20px rgba(139, 90, 63, 0.5);
 }
 
 .catering-title {
-  font-size: 3.5rem; color: #d4af37; text-align: center; margin-bottom: 2rem;
+  font-size: 3.5rem; color: #8b5a3f; text-align: center; margin-bottom: 2rem;
   font-family: 'Georgia', serif; font-weight: 700;
 }
 
@@ -94,7 +94,7 @@
 .catering-content { max-width: 800px; margin: 0 auto; text-align: left; }
 
 .section-title {
-  font-size: 2.2rem; color: #d4af37; margin: 3rem 0 1.5rem;
+  font-size: 2.2rem; color: #8b5a3f; margin: 3rem 0 1.5rem;
   font-family: 'Georgia', serif; font-weight: 600;
 }
 .section-title:first-child { margin-top: 0; }
@@ -105,14 +105,14 @@
 /* Przycisk – desktop bez zmian */
 .contact-phone {
   display: inline-block;
-  font-size: 2.2rem; color: #2a2420; font-weight: 700; text-decoration: none;
-  padding: 1.2rem 3rem; background: linear-gradient(135deg, #d4af37 0%, #8b7f74 100%);
-  border: 2px solid #d4af37; border-radius: 50px; transition: all 0.3s;
-  font-family: 'Georgia', serif; box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+  font-size: 2.2rem; color: #ffffff; font-weight: 700; text-decoration: none;
+  padding: 1.2rem 3rem; background: linear-gradient(135deg, #8b5a3f 0%, #8b7f74 100%);
+  border: 2px solid #8b5a3f; border-radius: 50px; transition: all 0.3s;
+  font-family: 'Georgia', serif; box-shadow: 0 8px 20px rgba(139, 90, 63, 0.4);
 }
 .contact-phone:hover {
-  background: linear-gradient(135deg, #f5e6d3 0%, #d4af37 100%);
-  transform: translateY(-3px); box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
+  background: linear-gradient(135deg, #a67c52 0%, #8b5a3f 100%);
+  transform: translateY(-3px); box-shadow: 0 12px 30px rgba(139, 90, 63, 0.6);
 }
 
 /* TYLKO MOBILE – mniejszy i wyśrodkowany przycisk */

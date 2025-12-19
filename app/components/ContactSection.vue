@@ -1,10 +1,16 @@
 <template>
   <section class="contact-section">
+    <!-- Dekoracyjne grafiki warzyw -->
+    <div class="veggie-decorations">
+      <img src="/tomato.png" alt="Pomidor" class="veggie veggie-1" />
+      <img src="/garlic.png" alt="Czosnek" class="veggie veggie-2" />
+    </div>
+
     <div class="contact-container">
       <div class="contact-grid">
         <!-- Lokalizacja -->
         <div class="contact-item">
-          <div class="contact-icon">📍</div>
+          <div class="contact-icon">🏠</div>
           <div class="contact-text">
             Bieszczadzka 18<br>
             38-700 Ustrzyki Dolne
@@ -13,7 +19,7 @@
 
         <!-- Telefon -->
         <div class="contact-item">
-          <div class="contact-icon">📞</div>
+          <div class="contact-icon">☎️</div>
           <a href="tel:537660808" class="contact-text contact-link">537 660 808</a>
         </div>
 
@@ -25,7 +31,7 @@
 
         <!-- Godziny otwarcia -->
         <div class="contact-item">
-          <div class="contact-icon">🕐</div>
+          <div class="contact-icon">⏰</div>
           <div class="contact-text">
             Pn - nie czynne.<br>
             Wt - Nd 11:00-17:00<br>
@@ -43,9 +49,50 @@
 
 <style scoped>
 .contact-section {
-  background: #000000;
+  background: #ffffff;
   padding: 2.5rem 2rem;
   position: relative;
+  overflow: hidden;
+}
+
+/* Dekoracyjne grafiki warzyw */
+.veggie-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.veggie {
+  position: absolute;
+  width: 60px;
+  height: auto;
+  opacity: 0.2;
+  animation: floatVeggie 18s infinite ease-in-out;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.veggie-1 {
+  top: 20%;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.veggie-2 {
+  bottom: 25%;
+  left: 8%;
+  animation-delay: 4s;
+  width: 55px;
+}
+
+@keyframes floatVeggie {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-12px) rotate(4deg); }
+  50% { transform: translateY(-6px) rotate(-4deg); }
+  75% { transform: translateY(-18px) rotate(2deg); }
 }
 
 .contact-container {
@@ -70,13 +117,12 @@
 
 .contact-icon {
   font-size: 2.5rem;
-  filter: grayscale(1) brightness(1.5) sepia(1) hue-rotate(15deg) saturate(3);
   margin-bottom: 0.5rem;
 }
 
 .contact-text {
   font-size: 0.95rem;
-  color: #e0e0e0;
+  color: #333333;
   line-height: 1.6;
   font-weight: 400;
 }
@@ -87,7 +133,7 @@
 }
 
 .contact-link:hover {
-  color: #d4af37;
+  color: #8b5a3f;
 }
 
 /* Responsywność */

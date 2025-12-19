@@ -189,7 +189,7 @@ const handleTouchEnd = () => {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1200px;
+  max-width: 900px;
   padding: 2rem;
 }
 
@@ -215,8 +215,8 @@ const handleTouchEnd = () => {
   min-width: 100%;
   flex-shrink: 0;
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 16px;
-  padding: 2rem;
+  border-radius: 12px;
+  padding: 1.5rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
   backdrop-filter: blur(10px);
@@ -361,12 +361,15 @@ const handleTouchEnd = () => {
 @media (max-width: 768px) {
   .reviews-section {
     background-attachment: scroll;
-    min-height: 60vh;
-    padding: 2rem 0;
+    min-height: auto;
+    padding: 3rem 0;
+    display: flex;
+    align-items: center;
   }
 
   .reviews-content {
-    padding: 1rem;
+    padding: 0.5rem;
+    width: 100%;
   }
 
   .carousel {
@@ -390,8 +393,32 @@ const handleTouchEnd = () => {
 
   .review-card {
     min-width: 100%;
-    padding: 1.5rem;
+    padding: 1.25rem;
     margin: 0;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  .author-name {
+    font-size: 0.9rem;
+  }
+
+  .author-meta {
+    font-size: 0.75rem;
+  }
+
+  .review-stars {
+    font-size: 1rem;
+  }
+
+  .review-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    -webkit-line-clamp: 8;
+  }
+
+  .show-more-btn {
+    font-size: 0.85rem;
   }
 
   /* POKAŻ INDICATORS NA MOBILCE */
@@ -402,12 +429,16 @@ const handleTouchEnd = () => {
 
 @media (max-width: 480px) {
   .reviews-section {
-    min-height: 50vh;
-    padding: 1.5rem 0;
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
+  .reviews-content {
+    padding: 0.25rem;
   }
 
   .carousel {
-    gap: 0.5rem;
+    gap: 0;
   }
 
   .carousel-btn {
@@ -417,13 +448,39 @@ const handleTouchEnd = () => {
   }
 
   .review-card {
-    padding: 1.25rem;
+    padding: 1rem;
+    max-height: 75vh;
   }
 
   .author-avatar {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .author-name {
+    font-size: 0.85rem;
+  }
+
+  .author-meta {
+    font-size: 0.7rem;
+  }
+
+  .review-stars {
+    font-size: 0.95rem;
+  }
+
+  .review-text {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 10;
+  }
+
+  .show-more-btn {
+    font-size: 0.8rem;
+  }
+
+  .google-logo {
+    height: 20px;
   }
 }
 </style>
