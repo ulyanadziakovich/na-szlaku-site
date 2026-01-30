@@ -19,29 +19,56 @@
     </div>
 
     <div class="about-container">
-      <h1 class="about-title">O nas</h1>
-      <h2 class="about-subtitle">Witamy w sercu kulinarnych tradycji</h2>
+      <h1 class="about-title">Witajcie u nas</h1>
 
-      <p class="about-text">
-        Nasza restauracja to miejsce, gdzie pasja do gotowania spotyka się z szacunkiem dla lokalnych smaków.
-        W naszym podejściu cechuje nas wierność tradycji, rodzinna atmosfera oraz dbałość o jakość dań, przysłowiowo mówiąc "gotujemy jak dla siebie"
-      </p>
+      <div class="about-content">
+        <p class="about-text about-intro">
+          To miejsce nazywa się Przystanek na Szlaku – i dokładnie tak się u nas czuje: jak przystanek, na którym warto na chwilę zwolnić, usiąść i zjeść prawdziwy, domowy obiad.
+        </p>
 
-      <h3 class="section-heading">Filozofia</h3>
-      <p class="about-text">
-        Wierzymy, że najlepsze potrawy powstają z najświeższych, sezonowych składników.
-        Współpracujemy z lokalnymi dostawcami i producentami, wspierając regionalne gospodarstwa.
-        Każdy talerz to opowieść o smakach naszego regionu.
-      </p>
+        <p class="about-text">
+          Prowadzi je Elżbieta – z sercem otwartym i z rękami, które od lat gotują tak, jakby to był obiad dla najbliższych. Bez pośpiechu, bez udziwnień, po prostu smacznie i po ludzku.
+        </p>
 
-      <h3 class="section-heading">Atmosfera</h3>
-      <p class="about-text">
-        Ciepłe wnętrze, rodzinna atmosfera i obsługa z pasją – u nas poczujesz się jak w domu.
-        Niezależnie czy przychodzisz na romantyczną kolację, rodzinne spotkanie czy spotkanie ze znajomymi,
-        stworzymy dla Ciebie wyjątkowe chwile.
-      </p>
+        <p class="about-text about-highlight">
+          U nas są tylko domowe obiady – takie, po których człowiek wstaje syty i uśmiechnięty.
+        </p>
 
-      <p class="about-invitation">Zapraszamy do wspólnego stołu!</p>
+        <p class="about-text">
+          Pachnie tu zupą, kotletem schodzącym z patelni, ziemniakami prosto z garnka i surówką, którą ktoś właśnie wymieszał.
+        </p>
+
+        <p class="about-text">
+          Ciepło drewna, delikatne światło, spokojne rozmowy przy stolikach i ta miła pewność, że nikt nie patrzy na zegarek.
+        </p>
+
+        <p class="about-text">
+          Obsługa pamięta, co lubicie, a czego wolicie unikać – po prostu z wyczuciem i życzliwością.
+        </p>
+
+        <p class="about-text">
+          Nie znajdziecie tu wymyślnych dań ani napięcia „jak w restauracji". Znajdziecie za to smak domu, spokój i to uczucie, że ktoś naprawdę się o Was postarał.
+        </p>
+
+        <p class="about-text">
+          Przyjdźcie w porze obiadowej – na spokojny posiłek w ciągu dnia, na rodzinny obiad albo po prostu dlatego, że macie ochotę na coś swojskiego i dobrego.
+        </p>
+
+        <div class="about-promise">
+          <p>Nie obiecujemy fajerwerków.</p>
+          <p>Obiecujemy, że będzie smacznie, ciepło i tak przyjemnie, że szkoda będzie Wam wstawać od stołu.</p>
+        </div>
+
+        <p class="about-text about-welcome">
+          Czekamy na Was z otwartymi ramionami i z garnkiem na ogniu.
+        </p>
+
+        <div class="about-signature">
+          <p>Z całego serca,</p>
+          <p class="signature-name">Elżbieta i cały nasz mały zespół</p>
+          <p class="signature-place">Przystanek na Szlaku</p>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -194,63 +221,104 @@
 }
 
 .about-container {
+  width: 100%;
   max-width: 900px;
+  padding: 0 2rem;
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
 }
 
 .about-title {
-  font-size: 3.5rem;
+  font-size: 3rem;
   color: #8b5a3f;
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-family: 'Georgia', serif;
-  font-weight: 700;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
 
-.about-subtitle {
-  font-size: 1.8rem;
-  color: #666666;
+.about-content {
   text-align: center;
-  margin-bottom: 3rem;
-  font-weight: 400;
-  font-style: italic;
-  font-family: 'Georgia', serif;
 }
 
 .about-text {
-  font-size: 1.4rem;
-  line-height: 1.8;
-  color: #333333;
-  margin-bottom: 2.5rem;
-  text-align: left;
-}
-
-.section-heading {
-  font-size: 2.2rem;
-  color: #8b5a3f;
-  margin-top: 3rem;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: #4a4a4a;
   margin-bottom: 1.5rem;
-  font-family: 'Georgia', serif;
-  font-weight: 600;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
 }
 
-.section-heading:first-of-type {
-  margin-top: 2rem;
+.about-intro {
+  font-size: 1.25rem;
+  color: #3d3832;
+  margin-bottom: 2rem;
 }
 
-.about-invitation {
-  font-size: 1.8rem;
+.about-highlight {
+  font-size: 1.3rem;
   color: #8b5a3f;
-  margin-top: 4rem;
-  font-weight: 600;
-  text-align: center;
-  font-family: 'Georgia', serif;
   font-style: italic;
-  padding-top: 3rem;
-  border-top: 2px solid rgba(139, 90, 63, 0.4);
+  margin: 2.5rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(139, 90, 63, 0.2);
+  border-bottom: 1px solid rgba(139, 90, 63, 0.2);
+}
+
+.about-promise {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: rgba(139, 90, 63, 0.05);
+  border-radius: 8px;
+}
+
+.about-promise p {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.2rem;
+  color: #3d3832;
+  margin: 0.5rem 0;
+  line-height: 1.8;
+}
+
+.about-promise p:first-child {
+  font-weight: 500;
+  color: #8b5a3f;
+}
+
+.about-welcome {
+  font-size: 1.2rem;
+  color: #8b5a3f;
+  margin-top: 2rem;
+  font-style: italic;
+}
+
+.about-signature {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(139, 90, 63, 0.3);
+}
+
+.about-signature p {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  color: #5c5c5c;
+  margin: 0.3rem 0;
+}
+
+.signature-name {
+  font-size: 1.25rem !important;
+  color: #8b5a3f !important;
+  font-weight: 500;
+  margin-top: 0.5rem !important;
+}
+
+.signature-place {
+  font-style: italic;
+  letter-spacing: 1px;
 }
 
 /* Responsywność */
@@ -260,15 +328,11 @@
   }
 
   .about-title {
-    font-size: 3rem;
-  }
-
-  .about-subtitle {
-    font-size: 1.6rem;
+    font-size: 2.5rem;
   }
 
   .about-container {
-    max-width: 800px;
+    padding: 0 1.5rem;
   }
 }
 
@@ -278,31 +342,33 @@
   }
 
   .about-title {
-    font-size: 2.5rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .about-subtitle {
-    font-size: 1.4rem;
+    font-size: 2.2rem;
     margin-bottom: 2rem;
   }
 
   .about-text {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
-
-  .section-heading {
-    font-size: 1.9rem;
-    margin-top: 2.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
     margin-bottom: 1.2rem;
   }
 
-  .about-invitation {
-    font-size: 1.5rem;
-    margin-top: 3rem;
-    padding-top: 2rem;
+  .about-intro {
+    font-size: 1.15rem;
+  }
+
+  .about-highlight {
+    font-size: 1.15rem;
+    margin: 2rem 0;
+    padding: 1rem 0;
+  }
+
+  .about-promise {
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .about-promise p {
+    font-size: 1.1rem;
   }
 
   .leaf {
@@ -317,30 +383,33 @@
   }
 
   .about-title {
-    font-size: 2.2rem;
-  }
-
-  .about-subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.9rem;
   }
 
   .about-text {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-heading {
-    font-size: 1.7rem;
-    margin-top: 2rem;
+    font-size: 1rem;
+    line-height: 1.7;
     margin-bottom: 1rem;
   }
 
-  .about-invitation {
-    font-size: 1.3rem;
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
+  .about-intro {
+    font-size: 1.05rem;
+  }
+
+  .about-highlight {
+    font-size: 1.05rem;
+  }
+
+  .about-promise p {
+    font-size: 1rem;
+  }
+
+  .about-signature p {
+    font-size: 1rem;
+  }
+
+  .signature-name {
+    font-size: 1.1rem !important;
   }
 
   .leaf {

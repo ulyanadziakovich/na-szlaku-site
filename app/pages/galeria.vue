@@ -51,17 +51,14 @@ const images = [
 
 .back-btn {
   display: inline-block;
-  font-size: 1.2rem;
-  color: #2a2420;
-  text-decoration: none;
-  padding: 0.8rem 1.5rem;
-  background: linear-gradient(135deg, #8b5a3f 0%, #8b7f74 100%);
-  border: 2px solid #8b5a3f;
-  border-radius: 50px;
-  font-weight: 700;
-  transition: all 0.3s;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 12px rgba(139, 90, 63, 0.3);
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, #8b5a3f 0%, #a67c52 100%);
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .back-btn:hover {
@@ -71,12 +68,11 @@ const images = [
 }
 
 .galeria-title {
-  font-size: 3.5rem;
-  color: #8b5a3f;
+  font-size: 3rem;
+  font-weight: 500;
   margin-bottom: 1rem;
-  font-weight: 700;
   text-align: center;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  color: #666666 ;
 }
 
 .subtitle {
@@ -137,7 +133,11 @@ const images = [
 
 @media (max-width: 768px) {
   .galeria-page {
-    padding: 4rem 1.5rem;
+    padding: 4rem 0;
+  }
+
+  .container {
+    padding: 0 1.5rem;
   }
 
   .galeria-title {
@@ -146,18 +146,39 @@ const images = [
 
   .subtitle {
     font-size: 1.4rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
+  /* Karuzela pozioma na tablet/mobile */
   .gallery-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.2rem;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding: 0 1.5rem 1rem 1.5rem;
+    margin: 0 -1.5rem;
+    scrollbar-width: none;
+  }
+
+  .gallery-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery-item {
+    flex: 0 0 75%;
+    scroll-snap-align: center;
+    border-radius: 14px;
   }
 }
 
 @media (max-width: 480px) {
   .galeria-page {
-    padding: 3rem 1rem;
+    padding: 3rem 0;
+  }
+
+  .container {
+    padding: 0 1rem;
   }
 
   .galeria-title {
@@ -166,16 +187,33 @@ const images = [
 
   .subtitle {
     font-size: 1.2rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
   }
 
+  /* Karuzela pozioma na mobile */
   .gallery-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
     gap: 1rem;
+    padding: 0 1rem 1rem 1rem;
+    margin: 0 -1rem;
+    scrollbar-width: none;
+  }
+
+  .gallery-grid::-webkit-scrollbar {
+    display: none;
   }
 
   .gallery-item {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
     border-radius: 12px;
+  }
+
+  .gallery-item img {
+    aspect-ratio: 4 / 3;
   }
 }
 </style>

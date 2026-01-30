@@ -16,11 +16,6 @@
       <!-- Mobile overlay menu -->
       <div class="mobile-menu-overlay" :class="{ open: mobileMenuOpen }">
         <div class="mobile-menu-content">
-          <!-- Logo in mobile menu -->
-          <NuxtLink to="/" class="mobile-logo" @click="closeMobileMenu">
-            <img src="/gemini1.webp" alt="Logo restauracji" class="logo-img" />
-          </NuxtLink>
-
           <ul class="mobile-menu-list">
           <!-- Catering -->
           <li>
@@ -103,15 +98,15 @@
           <div class="modal-body">
             <div class="voucher-info">
               <p>"Voucher na obiady — więcej smaku, mniej wydatków!"</p>
-              <p>Vouchery do naszej restauracji na 10 obiadów.</p>
+              <p>Vouchery do naszej restauracji na 10 obiadów za 270 zł. Jeden obiad: zupa, drugie danie, kompot.</p>
               <p><strong>Kontakt:</strong> <a href="tel:537660808">537 660 808</a></p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Desktop menu (hidden on mobile) -->
-      <ul class="desktop-menu">
+      <!-- Desktop menu - lewa strona -->
+      <ul class="desktop-menu desktop-menu-left">
         <li>
           <NuxtLink to="/#catering" @click="onCateringClick">Catering</NuxtLink>
         </li>
@@ -131,6 +126,10 @@
         <li>
           <NuxtLink to="/#o-nas" @click="onOnasClick">O nas</NuxtLink>
         </li>
+      </ul>
+
+      <!-- Desktop menu - prawa strona -->
+      <ul class="desktop-menu desktop-menu-right">
         <li class="dropdown">
           <button @click="toggleContact" @blur="closeContact" class="dropdown-toggle">
             Kontakt
@@ -155,8 +154,8 @@
           <div v-if="voucherOpen" class="dropdown-content voucher-dropdown">
             <div class="voucher-info">
               <p>"Voucher na obiady — więcej smaku, mniej wydatków!"</p>
-              <p>Vouchery do naszej restauracji na 10 obiadów.</p>
-              <p><strong>Kontakt:</strong> <a href="tel:537660808">537 660 808</a></p>
+              <p>Vouchery do naszej restauracji na 10 obiadów za 270 zł. Jeden obiad: zupa, drugie danie, kompot.</p>
+              
             </div>
           </div>
         </li>
@@ -165,10 +164,6 @@
         </li>
       </ul>
 
-      <!-- Desktop logo (hidden on mobile) -->
-      <NuxtLink to="/" class="desktop-logo" @click="scrollToTop">
-        <img src="/gemini1.webp" alt="Logo restauracji" class="logo-img" />
-      </NuxtLink>
     </div>
   </nav>
 </template>
@@ -302,40 +297,61 @@ const scrollToTop = (e) => {
   display: none;
 }
 
-/* Hamburger button (mobile only) */
+/* Hamburger button (mobile only) - elegancki styl */
 .hamburger-btn {
   display: none;
   flex-direction: column;
-  justify-content: space-around;
-  width: 32px;
-  height: 28px;
-  background: transparent;
-  border: none;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: #faf8f5;
+  border: 1px solid rgba(139, 90, 63, 0.2);
+  border-radius: 50%;
   cursor: pointer;
   padding: 0;
   z-index: 2000;
   position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn:hover {
+  border-color: #8b5a3f;
+  box-shadow: 0 4px 12px rgba(139, 90, 63, 0.2);
 }
 
 .hamburger-btn span {
-  width: 100%;
-  height: 3px;
+  display: block;
+  width: 18px;
+  height: 1.5px;
   background: #8b5a3f;
-  border-radius: 2px;
-  transition: all 0.3s;
+  border-radius: 1px;
+  transition: all 0.3s ease;
   transform-origin: center;
 }
 
+.hamburger-btn.active {
+  background: #faf8f5;
+  border-color: #8b5a3f;
+}
+
+.hamburger-btn.active span {
+  background: #8b5a3f;
+}
+
 .hamburger-btn.active span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(6.5px) rotate(45deg);
 }
 
 .hamburger-btn.active span:nth-child(2) {
   opacity: 0;
+  transform: scaleX(0);
 }
 
 .hamburger-btn.active span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-6.5px) rotate(-45deg);
 }
 
 /* Mobile menu overlay */
@@ -365,23 +381,6 @@ const scrollToTop = (e) => {
   margin: 2rem auto 0;
 }
 
-.mobile-logo {
-  flex-shrink: 0;
-  display: block;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.mobile-logo:hover {
-  transform: scale(1.05);
-}
-
-.mobile-logo .logo-img {
-  height: 100px;
-  width: auto;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
-}
-
 .mobile-menu-list {
   list-style: none;
   padding: 0;
@@ -401,13 +400,14 @@ const scrollToTop = (e) => {
   text-decoration: none;
   color: #f5e6d3;
   font-size: 1.4rem;
-  font-weight: 600;
+  font-weight: 400;
+  letter-spacing: 1px;
   transition: background 0.3s, color 0.3s;
   border-radius: 8px;
   background: none;
   border: none;
   cursor: pointer;
-  font-family: inherit;
+  font-family: 'Playfair Display', Georgia, serif;
   width: 100%;
   text-align: center;
   justify-content: center;
@@ -429,35 +429,6 @@ const scrollToTop = (e) => {
   border: 1px solid #8b6f47;
 }
 
-/* Desktop logo and menu */
-.desktop-logo {
-  display: flex;
-  position: absolute;
-  z-index: 1001;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.desktop-logo:hover {
-  transform: scale(1.05);
-}
-
-.desktop-logo .logo-img {
-  height: 140px;
-  width: auto;
-  display: block;
-  transition: opacity 0.3s;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
-  position: relative;
-  z-index: 2;
-  margin-top: 5px;
-  text-align: center;
-}
-
-.desktop-logo:hover .logo-img {
-  opacity: 0.85;
-}
-
 .desktop-menu {
   display: flex;
   list-style: none;
@@ -465,12 +436,19 @@ const scrollToTop = (e) => {
   padding: 0;
   gap: 2rem;
   align-items: center;
-  margin-left: auto;
   height: 100%;
   position: relative;
   z-index: 1;
   background: #ffffff;
   padding: 0 10px;
+}
+
+.desktop-menu-left {
+  margin-right: auto;
+}
+
+.desktop-menu-right {
+  margin-left: auto;
 }
 
 .desktop-menu li {
@@ -487,14 +465,15 @@ const scrollToTop = (e) => {
   height: 100%;
   padding: 0;
   text-decoration: none;
-  color: #333333;
-  font-size: 1.3rem;
-  font-weight: 500;
+  color: #3d3832;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 1px;
   transition: color 0.3s;
   background: none;
   border: none;
   cursor: pointer;
-  font-family: inherit;
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
 .desktop-menu a:hover,
@@ -526,7 +505,7 @@ const scrollToTop = (e) => {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #4a4139 0%, #564d43 100%);
+  background: linear-gradient(135deg, #ffffff);
   min-width: 250px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   border-radius: 8px;
@@ -560,7 +539,7 @@ const scrollToTop = (e) => {
 }
 
 .contact-item a {
-  color: #f5e6d3;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -579,7 +558,7 @@ const scrollToTop = (e) => {
 
 .voucher-info p {
   margin: 0.75rem 0;
-  color: #f5e6d3;
+  color: #000000;
   line-height: 1.5;
 }
 
@@ -658,8 +637,8 @@ const scrollToTop = (e) => {
     border-bottom: none;
     height: auto;
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 16px;
+    left: 16px;
     width: auto;
   }
 
@@ -674,51 +653,55 @@ const scrollToTop = (e) => {
 
   .hamburger-btn {
     display: flex;
+    width: 48px;
+    height: 48px;
   }
 
-  .desktop-logo,
+  .hamburger-btn span {
+    width: 20px;
+  }
+
+  .hamburger-btn.active span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .hamburger-btn.active span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
   .desktop-menu {
     display: none;
   }
 
-  /* Pełny ekran – bez paddingu, bez logo */
+  /* Pełny ekran - eleganckie jasne tło */
   .mobile-menu-overlay {
-    padding: 2rem 0;
-    background: linear-gradient(135deg, #3d3832 0%, #4a4139 50%, #3d3832 100%);
+    padding: 0;
+    background: #faf8f5;
     display: block;
     overflow-y: auto;
   }
 
   .mobile-menu-content {
     width: 100%;
-    min-height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0;
-    padding: 2rem 0;
+    padding: 4rem 2rem;
     margin: 0;
+    box-sizing: border-box;
   }
 
-  /* Logo w menu mobilnym */
-  .mobile-logo {
-    display: block !important;
-    margin-bottom: 2rem;
-  }
-
-  .mobile-logo .logo-img {
-    height: 110px;
-    width: auto;
-  }
-
-  /* Lista – zajmuje cały ekran */
+  /* Lista – elegancka i minimalistyczna */
   .mobile-menu-list {
     width: 100%;
+    max-width: 320px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -731,17 +714,23 @@ const scrollToTop = (e) => {
     align-items: center;
     justify-content: center;
     margin: 0;
-    min-height: 80px;
+    border-bottom: 1px solid rgba(139, 90, 63, 0.15);
   }
 
-  /* Ogromne napisy na całą szerokość */
+  .mobile-menu-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* Eleganckie napisy - mniejsze i bardziej wyrafinowane */
   .mobile-menu-list a,
   .mobile-menu-list .dropdown-toggle {
     width: 100%;
-    padding: 2rem 1.5rem;
-    font-size: 2.8rem;           /* bardzo duże */
-    font-weight: 600;
-    color: #f5e6d3;
+    padding: 1.5rem 1rem;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #3d3832;
     background: transparent;
     border: none;
     border-radius: 0;
@@ -749,52 +738,55 @@ const scrollToTop = (e) => {
     align-items: center;
     justify-content: center;
     text-align: center;
-    transition: background 0.3s ease;
+    transition: color 0.3s ease;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 
   .mobile-menu-list a:hover,
   .mobile-menu-list .dropdown-toggle:hover {
-    background: rgba(212, 175, 55, 0.15);
+    background: transparent;
     color: #8b5a3f;
   }
 
-  /* Strzałka – mała, po prawej */
+  /* Strzałka – subtelna */
   .arrow {
-    font-size: 1.6rem;
-    margin-left: 1rem;
+    font-size: 0.8rem;
+    margin-left: 0.75rem;
     transition: transform 0.3s ease;
+    color: #8b5a3f;
   }
   .arrow.open {
     transform: rotate(180deg);
   }
 
-  /* Dropdowny – też na całą szerokość */
+  /* Dropdowny – eleganckie */
   .mobile-menu-list .dropdown {
     width: 100%;
   }
 
   .mobile-menu-list .dropdown-content {
     position: static;
-    width: 80%;
-    background: rgba(139, 127, 116, 0.2);
-    padding: 1.5rem 2rem;
+    width: 100%;
+    background: rgba(139, 90, 63, 0.05);
+    padding: 1rem 1.5rem 1.5rem;
     margin: 0;
     border-radius: 0;
     box-shadow: none;
     animation: none;
-    border: 1px solid #8b7f74;
+    border: none;
+    border-top: 1px solid rgba(139, 90, 63, 0.1);
   }
 
   .mobile-menu-list .hours-item,
   .mobile-menu-list .contact-item {
-    padding: 1rem 0;
-    font-size: 1.3rem;
-    border-bottom: 1px solid rgba(139, 127, 116, 0.3);
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(139, 90, 63, 0.1);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     gap: 0.5rem;
-    text-align: center;
-
+    text-align: left;
   }
 
   .mobile-menu-list .hours-item:last-child,
@@ -802,62 +794,106 @@ const scrollToTop = (e) => {
     border-bottom: none;
   }
 
-  .mobile-menu-list .contact-item strong,
+  .mobile-menu-list .contact-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .mobile-menu-list .contact-item strong {
+    color: #8b5a3f !important;
+    font-size: 0.85rem !important;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
   .mobile-menu-list .contact-item a {
-    color: #f5e6d3 !important;
-    font-size: 1.3rem !important;
-    font-weight: 600;
+    color: #3d3832 !important;
+    font-size: 1.1rem !important;
+    font-weight: 400;
     text-decoration: none;
   }
 
-  .mobile-menu-list .hours-item .day,
+  .mobile-menu-list .hours-item .day {
+    color: #3d3832 !important;
+    font-size: 1rem !important;
+    font-weight: 400;
+  }
+
   .mobile-menu-list .hours-item .time {
-    color: #f5e6d3 !important;
-    font-size: 1.3rem !important;
-    font-weight: 600;
+    color: #8b5a3f !important;
+    font-size: 1rem !important;
+    font-weight: 500;
+  }
+
+  .mobile-menu-list .hours-note {
+    font-size: 0.85rem;
+    color: #8b8b8b;
+    margin-top: 0.75rem;
+    text-align: center;
+    font-style: italic;
   }
 
   .mobile-menu-list .voucher-info p {
-    font-size: 1.3rem;
+    font-size: 1rem;
     text-align: center;
-    margin: 0.8rem 0;
+    margin: 0.6rem 0;
     line-height: 1.6;
-    color: #f5e6d3;
+    color: #3d3832;
+  }
+
+  .mobile-menu-list .voucher-info p:first-child {
+    color: #8b5a3f;
+    font-style: italic;
   }
 }
 
-/* Na bardzo małych ekranach – trochę mniejszy tekst, ale nadal pełna szerokość */
+/* Na bardzo małych ekranach */
 @media (max-width: 480px) {
+  .mobile-menu-content {
+    padding: 3rem 1.5rem;
+  }
+
   .mobile-menu-list a,
   .mobile-menu-list .dropdown-toggle {
-    font-size: 2.2rem;
-    padding: 1.5rem 1rem;
+    font-size: 1.15rem;
+    padding: 1.25rem 0.75rem;
+    letter-spacing: 2px;
   }
 
   .arrow {
-    font-size: 1.4rem;
+    font-size: 0.7rem;
   }
 
   .mobile-menu-list .hours-item,
   .mobile-menu-list .contact-item {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
   }
 
-  .mobile-menu-list .contact-item strong,
-  .mobile-menu-list .contact-item a,
+  .mobile-menu-list .contact-item strong {
+    font-size: 0.8rem !important;
+  }
+
+  .mobile-menu-list .contact-item a {
+    font-size: 1rem !important;
+    color: #3d3832 !important;
+  }
+
   .mobile-menu-list .hours-item .day,
   .mobile-menu-list .hours-item .time {
-    font-size: 1.1rem !important;
-    color: #f5e6d3 !important;
-    font-weight: 600;
+    font-size: 0.95rem !important;
   }
 
   .mobile-menu-list .voucher-info p {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
   }
 
   .mobile-menu-list .dropdown-content {
-    padding: 1rem 1.5rem;
+    padding: 0.75rem 1rem 1rem;
+  }
+
+  .mobile-menu-list .hours-note {
+    font-size: 0.8rem;
   }
 }
 
@@ -875,51 +911,51 @@ const scrollToTop = (e) => {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.4);
     z-index: 2000;
     align-items: center;
     justify-content: center;
     padding: 1rem;
   }
 
-  /* KLUCZOWA POPRAWKA */
   .modal-content {
-    background: linear-gradient(135deg, #4a4139 0%, #564d43 100%);
-    border-radius: 20px;
-    border: 2px solid #8b7f74;
+    background: #faf8f5;
+    border-radius: 16px;
+    border: 1px solid rgba(139, 90, 63, 0.2);
     padding: 2rem 1.5rem;
-    width: 75vw;           /* mniejsze od poprzednich 90vw */
-    max-width: 340px;      /* mniejsze maksimum */
+    width: 85vw;
+    max-width: 360px;
     max-height: 85vh;
     overflow-y: auto;
     position: relative;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     box-sizing: border-box;
   }
 
-  /* Tytuł nie może wychodzić poza ekran */
   .modal-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: #8b5a3f;
     margin-bottom: 1.5rem;
-    font-weight: 700;
+    font-weight: 400;
     text-align: center;
-    padding-right: 3rem;
+    padding-right: 2.5rem;
     word-wrap: break-word;
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
   }
 
   .modal-body {
-    color: #f5e6d3;
+    color: #3d3832;
   }
 
-  /* Godziny – tekst nie może się rozjeżdżać */
   .modal-body .hours-item {
     display: flex;
     justify-content: space-between;
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(139, 127, 116, 0.3);
-    font-size: 1.15rem;
-    flex-wrap: wrap;           /* <--- to najważniejsze! */
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(139, 90, 63, 0.1);
+    font-size: 1rem;
+    flex-wrap: wrap;
     gap: 0.5rem;
   }
 
@@ -928,43 +964,44 @@ const scrollToTop = (e) => {
   }
 
   .modal-body .hours-item .day {
-    font-weight: 600;
-    color: #f5e6d3;
+    font-weight: 400;
+    color: #3d3832;
     flex: 1;
-    min-width: 120px;
+    min-width: 110px;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 
   .modal-body .hours-item .time {
     color: #8b5a3f;
     font-weight: 500;
     text-align: right;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 
   .modal-body .hours-item .time.closed {
-    color: #ff6b6b;
-    font-weight: 600;
+    color: #c44;
+    font-weight: 500;
   }
 
   .modal-body .hours-note {
     margin-top: 1rem;
     padding-top: 1rem;
-    font-size: 0.9rem;
-    color: #e8d5c0;
+    font-size: 0.85rem;
+    color: #8b8b8b;
     font-style: italic;
     text-align: center;
-    border-top: 1px solid rgba(139, 111, 71, 0.3);
+    border-top: 1px solid rgba(139, 90, 63, 0.1);
   }
 
-  /* Kontakt i vouchery – też bezpieczne */
   .modal-body .contact-item,
   .modal-body .voucher-info p {
     text-align: center;
-    padding: 0.8rem 0;
+    padding: 0.75rem 0;
     word-wrap: break-word;
   }
 
   .modal-body .contact-item {
-    border-bottom: 1px solid rgba(139, 127, 116, 0.3);
+    border-bottom: 1px solid rgba(139, 90, 63, 0.1);
   }
 
   .modal-body .contact-item:last-child {
@@ -974,37 +1011,43 @@ const scrollToTop = (e) => {
   .modal-body .contact-item strong {
     display: block;
     color: #8b5a3f;
-    font-size: 1rem;
-    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
   }
 
   .modal-body .contact-item a {
-    color: #f5e6d3;
+    color: #3d3832;
     text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 400;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 
   .modal-body .contact-item a:hover {
-    text-decoration: underline;
+    color: #8b5a3f;
   }
 
   .modal-body .voucher-info p {
-    margin: 0.8rem 0;
-    line-height: 1.5;
-    color: #f5e6d3;
+    margin: 0.6rem 0;
+    line-height: 1.6;
+    color: #3d3832;
     font-size: 0.95rem;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 
   .modal-body .voucher-info p:first-child {
-    font-weight: 600;
+    font-weight: 400;
     color: #8b5a3f;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-style: italic;
   }
 
   .modal-body .voucher-info a {
     color: #8b5a3f;
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
   }
 
@@ -1014,20 +1057,26 @@ const scrollToTop = (e) => {
 
   .modal-close {
     position: absolute;
-    top: 0.8rem;
-    right: 0.8rem;
-    background: rgba(212, 175, 55, 0.2);
-    border: none;
-    font-size: 2.2rem;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: transparent;
+    border: 1px solid rgba(139, 90, 63, 0.3);
+    font-size: 1.5rem;
     color: #8b5a3f;
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
   }
 
   .modal-close:hover {
-    background: rgba(212, 175, 55, 0.3);
+    background: rgba(139, 90, 63, 0.1);
+    border-color: #8b5a3f;
   }
 }
 
@@ -1050,17 +1099,42 @@ const scrollToTop = (e) => {
 /* Na małych ekranach jeszcze mniejszy modal */
 @media (max-width: 480px) {
   .modal-content {
-    width: 80vw;
-    max-width: 300px;
-    padding: 1.8rem 1.2rem;
+    width: 90vw;
+    max-width: 320px;
+    padding: 1.5rem 1.25rem;
   }
 
   .modal-title {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
   }
 
   .modal-body .hours-item {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
+    padding: 0.6rem 0;
+  }
+
+  .modal-body .hours-item .day,
+  .modal-body .hours-item .time {
+    font-size: 0.95rem;
+  }
+
+  .modal-body .contact-item strong {
+    font-size: 0.8rem;
+  }
+
+  .modal-body .contact-item a {
+    font-size: 1rem;
+  }
+
+  .modal-body .voucher-info p {
+    font-size: 0.9rem;
+  }
+
+  .modal-close {
+    width: 32px;
+    height: 32px;
+    font-size: 1.3rem;
   }
 }
 </style>

@@ -12,8 +12,8 @@
   background-position: center;
   background-repeat: no-repeat;
   box-shadow:
-    inset 0 10px 30px rgba(0, 0, 0, 0.5),
-    inset 0 -10px 30px rgba(0, 0, 0, 0.5);
+    inset 0 10px 30px rgba(0, 0, 0, 0.1),
+    inset 0 -10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .parallax-banner::before {
@@ -23,7 +23,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.1);
   pointer-events: none;
 }
 

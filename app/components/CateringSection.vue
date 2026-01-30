@@ -10,37 +10,34 @@
 
     <div class="container">
       <h1 class="catering-title">Catering i organizacja przyjęć</h1>
-      <div class="tomato-decoration">
-        <img src="/tomato.png" alt="Pomidor dekoracja" />
-      </div>
-      <p class="intro-text">
-        Zapraszamy do skorzystania z naszych usług cateringowych oraz organizacji wydarzeń okolicznościowych.
-      </p>
-
-      <div class="catering-image">
-        <img src="/13.jpg" alt="Catering - dania restauracji" />
-      </div>
 
       <div class="catering-content">
+        <p class="catering-text catering-intro">
+          Zapraszamy do skorzystania z naszych usług cateringowych oraz organizacji wydarzeń okolicznościowych.
+        </p>
+
+        <div class="catering-image">
+          <img src="/13.jpg" alt="Catering - dania restauracji" />
+        </div>
+
         <h2 class="section-title">Przyjęcia w lokalu</h2>
-        <p class="section-text">
-          Nasz lokal idealnie nadaje się do organizacji wszelkiego rodzaju uroczystości — wesel,
-          przyjęć urodzinowych, styp oraz innych spotkań rodzinnych i firmowych. Zapewniamy pełną
-          obsługę kulinarną dostosowaną do charakteru wydarzenia i Państwa oczekiwań.
+        <p class="catering-text">
+          Nasz lokal idealnie nadaje się do organizacji wszelkiego rodzaju uroczystości — wesel, przyjęć urodzinowych, styp oraz innych spotkań rodzinnych i firmowych.
+        </p>
+        <p class="catering-text">
+          Zapewniamy pełną obsługę kulinarną dostosowaną do charakteru wydarzenia i Państwa oczekiwań.
         </p>
 
         <h2 class="section-title">Dania na zamówienie</h2>
-        <p class="section-text">
-          Przygotowujemy również dania na indywidualne zamówienia z możliwością odbioru osobistego
-          w lokalu. W przypadku większych zamówień oferujemy dowóz pod wskazany adres.
+        <p class="catering-text">
+          Przygotowujemy również dania na indywidualne zamówienia z możliwością odbioru osobistego w lokalu.
+        </p>
+        <p class="catering-text">
+          W przypadku większych zamówień oferujemy dowóz pod wskazany adres.
         </p>
 
-        <p class="section-text contact-info">
-          Szczegółowe informacje dotyczące menu, cen oraz dostępnych terminów udzielamy telefonicznie
-          — zachęcamy do kontaktu.
-        </p>
-
-        <div class="phone-wrapper">
+        <div class="catering-contact">
+          <p>Szczegółowe informacje dotyczące menu, cen oraz dostępnych terminów udzielamy telefonicznie — zachęcamy do kontaktu.</p>
           <a href="tel:537660808" class="contact-phone">537 660 808</a>
         </div>
       </div>
@@ -115,111 +112,177 @@
   75% { transform: translateY(-18px) rotate(2deg); }
 }
 
-.container { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
 
 .catering-title {
-  font-size: 3.5rem; color: #8b5a3f; text-align: center; margin-bottom: 1rem;
-  font-family: 'Georgia', serif; font-weight: 700;
-}
-
-.tomato-decoration {
+  font-size: 3rem;
+  color: #8b5a3f;
   text-align: center;
-  margin: 1rem 0 2rem;
+  margin-bottom: 3rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
 
-.tomato-decoration img {
-  width: 120px;
-  height: auto;
-  display: inline-block;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-  animation: float 3s ease-in-out infinite;
+.catering-content {
+  text-align: center;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+.catering-text {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: #4a4a4a;
+  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
 }
 
-.intro-text {
-  font-size: 1.6rem; color: #666666; text-align: center; margin-bottom: 4rem;
-  line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto;
+.catering-intro {
+  font-size: 1.25rem;
+  color: #3d3832;
+  margin-bottom: 2.5rem;
 }
 
 .catering-image {
-  width: 100%; max-width: 900px; margin: 0 auto 5rem auto;
-  border-radius: 16px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-  border: 3px solid #8b7f74;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
-.catering-image img { width: 100%; height: auto; display: block; object-fit: cover; }
 
-.catering-content { max-width: 800px; margin: 0 auto; text-align: left; }
+.catering-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
 
 .section-title {
-  font-size: 2.2rem; color: #8b5a3f; margin: 3rem 0 1.5rem;
-  font-family: 'Georgia', serif; font-weight: 600;
+  font-size: 1.5rem;
+  color: #8b5a3f;
+  margin: 2.5rem 0 1rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
-.section-title:first-child { margin-top: 0; }
 
-.section-text { font-size: 1.4rem; color: #333333; line-height: 1.8; margin-bottom: 2rem; }
-.contact-info { margin: 3rem 0 2.5rem; font-weight: 500; color: #666666; }
+.catering-contact {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(139, 90, 63, 0.3);
+}
 
-/* Przycisk – desktop bez zmian */
+.catering-contact p {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  color: #5c5c5c;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
 .contact-phone {
   display: inline-block;
-  font-size: 2.2rem; color: #ffffff; font-weight: 700; text-decoration: none;
-  padding: 1.2rem 3rem; background: linear-gradient(135deg, #8b5a3f 0%, #8b7f74 100%);
-  border: 2px solid #8b5a3f; border-radius: 50px; transition: all 0.3s;
-  font-family: 'Georgia', serif; box-shadow: 0 8px 20px rgba(139, 90, 63, 0.4);
+  font-size: 1.4rem;
+  color: #8b5a3f;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
+  border: 1px solid #8b5a3f;
+  border-radius: 8px;
+  transition: all 0.3s;
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: 1px;
 }
+
 .contact-phone:hover {
-  background: linear-gradient(135deg, #a67c52 0%, #8b5a3f 100%);
-  transform: translateY(-3px); box-shadow: 0 12px 30px rgba(139, 90, 63, 0.6);
+  background: #8b5a3f;
+  color: #ffffff;
 }
 
-/* TYLKO MOBILE – mniejszy i wyśrodkowany przycisk */
-@media (max-width: 768px) {
-  .catering-content { text-align: center; }
-  .phone-wrapper { text-align: center; }
-
-  .contact-phone {
-    font-size: 1.7rem;
-    padding: 0.9rem 2.2rem;
-    min-width: 260px;
-    width: fit-content;
-    margin: 0 auto;
-    display: inline-flex;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .contact-phone {
-    font-size: 1.5rem;
-    padding: 0.8rem 1.8rem;
-    min-width: 240px;
-  }
-}
-
-/* reszta responsywności bez zmian */
+/* Responsywność */
 @media (max-width: 968px) {
-  .catering-section { padding: 5rem 1.5rem; }
-  .catering-title { font-size: 3rem; }
-  .intro-text { font-size: 1.5rem; }
+  .catering-section {
+    padding: 5rem 2rem;
+  }
+
+  .catering-title {
+    font-size: 2.5rem;
+  }
+
+  .container {
+    padding: 0 1.5rem;
+  }
 }
+
 @media (max-width: 768px) {
-  .catering-section { padding: 4rem 1.5rem; }
-  .catering-title { font-size: 2.5rem; }
-  .intro-text { font-size: 1.4rem; margin-bottom: 3rem; }
-  .section-title { font-size: 1.9rem; }
-  .section-text { font-size: 1.2rem; }
-  .tomato-decoration img { width: 100px; }
+  .catering-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .catering-title {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .catering-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+
+  .catering-intro {
+    font-size: 1.15rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+    margin: 2rem 0 0.8rem;
+  }
+
+  .catering-contact p {
+    font-size: 1rem;
+  }
+
+  .contact-phone {
+    font-size: 1.2rem;
+    padding: 0.7rem 1.5rem;
+  }
 }
+
 @media (max-width: 480px) {
-  .catering-section { padding: 3rem 1rem; }
-  .catering-title { font-size: 2.2rem; }
-  .intro-text { font-size: 1.2rem; }
-  .section-title { font-size: 1.7rem; }
-  .section-text { font-size: 1.1rem; }
-  .tomato-decoration img { width: 80px; }
+  .catering-section {
+    padding: 3rem 1rem;
+  }
+
+  .catering-title {
+    font-size: 1.9rem;
+  }
+
+  .catering-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .catering-intro {
+    font-size: 1.05rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .contact-phone {
+    font-size: 1.1rem;
+  }
 }
 </style>

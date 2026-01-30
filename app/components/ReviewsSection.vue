@@ -160,7 +160,7 @@ const handleTouchEnd = () => {
 .reviews-section {
   position: relative;
   min-height: 70vh;
-  background-image: url('/03.jpg');
+  background-image: url('/01.jpg');
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
@@ -213,10 +213,11 @@ const handleTouchEnd = () => {
 
 .review-card {
   min-width: 100%;
+  width: 100%;
   flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.97);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 2rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
   backdrop-filter: blur(10px);
@@ -239,14 +240,15 @@ const handleTouchEnd = () => {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #e67e22;
+  background: linear-gradient(135deg, #8b5a3f 0%, #a67c52 100%);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  font-size: 1.2rem;
+  font-weight: 500;
+  font-size: 1.1rem;
   flex-shrink: 0;
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
 .author-info {
@@ -255,16 +257,18 @@ const handleTouchEnd = () => {
 }
 
 .author-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1a1a1a;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #3d3832;
   margin: 0;
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
 .author-meta {
   font-size: 0.8rem;
-  color: #666666;
+  color: #8b8b8b;
   margin: 0.25rem 0 0;
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
 .google-logo {
@@ -273,21 +277,24 @@ const handleTouchEnd = () => {
 }
 
 .review-stars {
-  color: #ffa500;
+  color: #8b5a3f;
   font-size: 1.1rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
 }
 
 .review-text {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #333333;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #4a4a4a;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
 }
 
 .review-text.expanded {
@@ -298,17 +305,18 @@ const handleTouchEnd = () => {
 .show-more-btn {
   background: none;
   border: none;
-  color: #1a73e8;
+  color: #8b5a3f;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   padding: 0.5rem 0 0 0;
   margin-top: 0.5rem;
   transition: color 0.3s;
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
 .show-more-btn:hover {
-  color: #0d47a1;
+  color: #5c3a2a;
   text-decoration: underline;
 }
 
@@ -362,18 +370,21 @@ const handleTouchEnd = () => {
   .reviews-section {
     background-attachment: scroll;
     min-height: auto;
-    padding: 3rem 0;
+    padding: 4rem 0;
     display: flex;
     align-items: center;
   }
 
   .reviews-content {
-    padding: 0.5rem;
+    padding: 0 1rem;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .carousel {
     gap: 0;
+    width: 100%;
   }
 
   /* UKRYJ STRZAŁKI NA MOBILCE */
@@ -383,24 +394,40 @@ const handleTouchEnd = () => {
 
   .carousel-track-container {
     width: 100%;
+    max-width: 100%;
+    overflow: hidden;
     touch-action: pan-y;
     user-select: none;
   }
 
   .carousel-track {
     gap: 0;
+    width: 100%;
   }
 
   .review-card {
     min-width: 100%;
-    padding: 1.25rem;
+    width: 100%;
+    padding: 1.5rem;
     margin: 0;
-    max-height: 70vh;
-    overflow-y: auto;
+    max-height: none;
+    overflow-y: visible;
+    border-radius: 12px;
+    box-sizing: border-box;
+  }
+
+  .review-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
   }
 
   .author-name {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .author-meta {
@@ -409,12 +436,13 @@ const handleTouchEnd = () => {
 
   .review-stars {
     font-size: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .review-text {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    -webkit-line-clamp: 8;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    -webkit-line-clamp: 6;
   }
 
   .show-more-btn {
@@ -424,63 +452,81 @@ const handleTouchEnd = () => {
   /* POKAŻ INDICATORS NA MOBILCE */
   .carousel-indicators {
     display: flex;
+    margin-top: 1.25rem;
+  }
+
+  .indicator-dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  .indicator-dot.active {
+    background: #8b5a3f;
   }
 }
 
 @media (max-width: 480px) {
   .reviews-section {
     min-height: auto;
-    padding: 2rem 0;
+    padding: 3rem 0;
   }
 
   .reviews-content {
-    padding: 0.25rem;
-  }
-
-  .carousel {
-    gap: 0;
-  }
-
-  .carousel-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1.3rem;
+    padding: 0 0.5rem;
   }
 
   .review-card {
-    padding: 1rem;
-    max-height: 75vh;
+    padding: 1.25rem;
+    border-radius: 10px;
+  }
+
+  .review-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .author-avatar {
     width: 36px;
     height: 36px;
-    font-size: 0.9rem;
-  }
-
-  .author-name {
     font-size: 0.85rem;
   }
 
+  .author-name {
+    font-size: 0.9rem;
+  }
+
   .author-meta {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
+    display: none;
+  }
+
+  .google-logo {
+    height: 16px;
   }
 
   .review-stars {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
   }
 
   .review-text {
     font-size: 0.85rem;
-    -webkit-line-clamp: 10;
+    line-height: 1.6;
+    -webkit-line-clamp: 5;
   }
 
   .show-more-btn {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
-  .google-logo {
-    height: 20px;
+  .carousel-indicators {
+    margin-top: 1rem;
+  }
+
+  .indicator-dot {
+    width: 6px;
+    height: 6px;
   }
 }
 </style>

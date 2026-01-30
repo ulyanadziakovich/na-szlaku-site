@@ -4,7 +4,12 @@
     <div class="hero-content">
       <h1 class="hero-title">Przystanek na szlaku</h1>
       <p class="hero-subtitle">Domowe smaki codziennie</p>
-      <a href="#menu" class="hero-btn">Zobacz menu</a>
+      <div class="container">
+        <div class="button-card">
+            <p class="button-label">Nasze menu dnia możesz sprawdzić</p>
+            <a href="https://www.facebook.com/p/Przystanek-na-Szlaku-100091893895594/" target="_blank" rel="noopener" class="btn-bread">tutaj</a>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -60,29 +65,45 @@
   opacity: 0.95;
 }
 
-.hero-btn {
-  display: inline-flex;
-  align-items: center;
+.container {
+  display: flex;
   justify-content: center;
-  background: linear-gradient(135deg, #8b5a3f 0%, #8b7f74 100%);
-  color: #ffffff;
-  padding: 0.9rem 2.5rem;
-  border-radius: 50px;
-  border: 2px solid #8b5a3f;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(139, 90, 63, 0.4);
-  min-width: 200px;
+}
+
+.button-card {
+  background: #f5f0eb;
+  border-radius: 12px;
+  padding: 1rem 3.5rem;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.button-label {
+  color: #8b5a3f;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  margin: 0;
   text-align: center;
 }
 
-.hero-btn:hover {
-  background: linear-gradient(135deg, #a67c52 0%, #8b5a3f 100%);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(139, 90, 63, 0.6);
-  border-color: #a67c52;
+.btn-bread {
+  display: block;
+  background: transparent;
+  color: #5c4a3d;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 1.5rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+}
+
+.btn-bread:hover {
+  color: #8b5a3f;
 }
 
 /* Responsywność */
@@ -119,11 +140,12 @@
     margin-bottom: 1.5rem;
   }
 
-  .hero-btn {
-    padding: 1rem 0,7rem;
-    font-size: 1.05rem;
-    min-height: 48px;
-    min-width: 180px;
+  .button-card {
+    padding: 0.85rem 2.5rem;
+  }
+
+  .btn-bread {
+    font-size: 1.3rem;
   }
 }
 
@@ -136,10 +158,12 @@
     font-size: 1.2rem;
   }
 
-  .hero-btn {
-    padding: 0.8rem 1.8rem;
+  .button-card {
+    padding: 0.75rem 2rem;
+  }
+
+  .btn-bread {
     font-size: 1rem;
-    min-width: 160px;
   }
 }
 </style>
