@@ -8,6 +8,15 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt'
   ],
 
+  app: {
+    head: {
+      link: [
+        { rel: "preconnect", href: "https://www.googletagmanager.com" },
+        { rel: "dns-prefetch", href: "https://www.googletagmanager.com" },
+      ],
+    },
+  },
+
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
