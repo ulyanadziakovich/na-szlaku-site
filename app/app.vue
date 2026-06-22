@@ -1,13 +1,15 @@
 <template>
   <div>
     <NuxtRouteAnnouncer />
+    <ClientOnly>
+      <PromoBanner />
+    </ClientOnly>
     <Navigation />
     <NuxtPage />
   </div>
 </template>
 
 <style>
-/* Globalne style - usunięcie białych marginesów i ustawienie ciemnego tła */
 html, body {
   margin: 0;
   padding: 0;
